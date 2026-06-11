@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Code2, Monitor, Cloud, Building2, Circle } from 'lucide-react';
+import TiltCard from '@/components/tilt-card';
 
 const skillCategories = [
   {
@@ -80,7 +81,8 @@ export default function Skills() {
                 transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
                 className="group"
               >
-                <div className="h-full p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+                <TiltCard tiltDegree={5} scaleOnHover={1.01} glareOpacity={0.2}>
+                  <div className="h-full p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
                   {/* Header */}
                   <div className="flex items-center gap-3 mb-4">
                     <div className={`p-2.5 rounded-xl bg-gradient-to-br ${category.color} border border-border/50`}>
@@ -119,6 +121,7 @@ export default function Skills() {
                     ))}
                   </div>
                 </div>
+              </TiltCard>
               </motion.div>
             );
           })}

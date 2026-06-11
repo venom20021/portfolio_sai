@@ -83,7 +83,7 @@ export default function Footer() {
             <h3 className="text-sm font-semibold text-foreground mb-3">Connect</h3>
             <div className="flex gap-2 mb-4">
               <a
-                href="https://github.com/saiprabhat"
+                href="https://github.com/venom20021"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition-all duration-200"

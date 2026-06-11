@@ -5,6 +5,9 @@ import { ThemeProvider } from 'next-themes';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import AnimatedLayout from '@/components/animated-layout';
+import MouseBeam from '@/components/mouse-beam';
+import CustomCursor from '@/components/custom-cursor';
+import ClickParticles from '@/components/click-particles';
 import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -44,6 +47,9 @@ export default function RootLayout({
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="antialiased min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <ClickParticles />
+          <CustomCursor />
+          <MouseBeam />
           <Navbar />
           <main>
             <AnimatedLayout>{children}</AnimatedLayout>

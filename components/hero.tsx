@@ -4,6 +4,7 @@ import Link from 'next/link';
 import { ArrowRight, Download, Mail, ChevronDown } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
+import TiltCard from '@/components/tilt-card';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -80,6 +81,7 @@ export default function Hero() {
 
           {/* Right: Photo with scroll animation */}
           <div className="relative flex justify-center lg:justify-end">
+            <TiltCard tiltDegree={4} scaleOnHover={1.0} glareOpacity={0.35}>
             <motion.div
               className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
               style={{
@@ -132,6 +134,7 @@ export default function Hero() {
                 </div>
               </motion.div>
             </motion.div>
+            </TiltCard>
           </div>
         </div>
       </div>

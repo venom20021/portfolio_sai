@@ -1,6 +1,7 @@
 'use client';
 
 import { Github } from 'lucide-react';
+import TiltCard from '@/components/tilt-card';
 
 interface ProjectCardProps {
   project: {
@@ -16,7 +17,7 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ project }: ProjectCardProps) {
   return (
-    <div className="group h-full">
+    <TiltCard tiltDegree={6} scaleOnHover={1.02} glareOpacity={0.3} className="group h-full">
       <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-background to-muted/20 shadow-sm transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl group-hover:border-primary/20">
         {/* Image */}
         <div className="relative h-48 overflow-hidden bg-muted/30">
@@ -78,6 +79,6 @@ export default function ProjectCard({ project }: ProjectCardProps) {
           </div>
         </div>
       </div>
-    </div>
+    </TiltCard>
   );
 }

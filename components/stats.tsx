@@ -2,6 +2,7 @@
 
 import { motion } from 'framer-motion';
 import { Briefcase, Award, Layers, Activity } from 'lucide-react';
+import TiltCard from '@/components/tilt-card';
 
 const stats = [
   {
@@ -49,7 +50,8 @@ export default function Stats() {
                 transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
                 className="group relative"
               >
-                <div className="relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/30 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+                <TiltCard tiltDegree={5} scaleOnHover={1.02} glareOpacity={0.25}>
+                  <div className="relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/30 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
                   {/* Icon */}
                   <div className={`mb-4 inline-flex p-3 rounded-xl bg-gradient-to-br ${stat.color} border border-border/50`}>
                     <Icon className="h-5 w-5 text-foreground" />
@@ -67,9 +69,9 @@ export default function Stats() {
                     {stat.label}
                   </h3>
                   <p className="text-sm text-muted-foreground leading-relaxed">
-                    {stat.description}
-                  </p>
-                </div>
+                    {stat.description}                    </p>
+                  </div>
+                </TiltCard>
               </motion.div>
             );
           })}

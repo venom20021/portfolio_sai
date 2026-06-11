@@ -3,6 +3,7 @@
 import Link from 'next/link';
 import { motion } from 'framer-motion';
 import { Mail, Download, ArrowRight, Sparkles } from 'lucide-react';
+import TiltCard from '@/components/tilt-card';
 
 export default function CTASection() {
   return (
@@ -16,12 +17,13 @@ export default function CTASection() {
       </div>
 
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <motion.div
-          initial={{ y: 30, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ duration: 0.6, ease: 'easeOut' }}
-          className="relative p-8 sm:p-12 rounded-3xl border border-primary/20 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-xl shadow-2xl text-center"
-        >
+        <TiltCard tiltDegree={4} scaleOnHover={1.0} glareOpacity={0.3}>
+          <motion.div
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.6, ease: 'easeOut' }}
+            className="relative p-8 sm:p-12 rounded-3xl border border-primary/20 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-xl shadow-2xl text-center"
+          >
           {/* Sparkle icon */}
           <div className="absolute -top-4 -right-4 sm:-top-6 sm:-right-6">
             <div className="p-3 rounded-2xl bg-primary shadow-lg shadow-primary/20">
@@ -52,7 +54,8 @@ export default function CTASection() {
               <Download className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
             </a>
           </div>
-        </motion.div>
+          </motion.div>
+        </TiltCard>
       </div>
     </section>
   );
