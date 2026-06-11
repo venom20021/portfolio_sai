@@ -11,7 +11,7 @@ const projects = [
     description: 'Built a machine learning pipeline for predictive analytics, reducing forecasting errors by 35% and processing time by 60%.',
     impact: 'Improved prediction accuracy and operational efficiency for business forecasting.',
     technologies: ['Python', 'TensorFlow', 'AWS Lambda', 'S3', 'Step Functions'],
-    image: '/projects/ml-pipeline.jpg',
+    image: '/projects/ml-pipeline.svg',
     github: 'https://github.com/venom20021',
   },
   {
@@ -20,7 +20,7 @@ const projects = [
     description: 'Designed a scalable data processing platform handling 100K+ events per second with sub-second latency.',
     impact: 'Enabled real-time insights for business intelligence, supporting data-driven decision making.',
     technologies: ['Go', 'Kafka', 'Kubernetes', 'PostgreSQL', 'Grafana'],
-    image: '/projects/analytics-platform.jpg',
+    image: '/projects/analytics-platform.svg',
     github: 'https://github.com/venom20021',
   },
   {
@@ -29,7 +29,7 @@ const projects = [
     description: 'Architected a micro-services based e-commerce platform supporting 1M+ users with 99.9% uptime.',
     impact: 'Reduced infrastructure costs by 40% while improving scalability and fault tolerance.',
     technologies: ['Node.js', 'React', 'Docker', 'AWS', 'Terraform', 'MongoDB'],
-    image: '/projects/ecommerce-architecture.jpg',
+    image: '/projects/ecommerce-architecture.svg',
     github: 'https://github.com/venom20021',
   },
 ];
