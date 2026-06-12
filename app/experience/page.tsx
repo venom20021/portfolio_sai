@@ -27,25 +27,32 @@ export default function ExperiencePage() {
           <Timeline
             items={[
               {
-                title: 'Fullstack Developer',
-                period: 'Current',
+                title: 'Computer Teacher',
+                period: 'Feb 2025 - Present',
                 description:
-                  '• Architected a machine learning pipeline that improved prediction accuracy by 35% and reduced processing time by 60%\n• Designed a high-throughput analytics platform handling 100K+ events per second with sub-second latency\n• Built a scalable e-commerce architecture supporting 1M+ users with 99.9% uptime, reducing infrastructure costs by 40%\n• Led cross-functional teams of 5-8 engineers in agile environments\n• Implemented CI/CD pipelines using GitHub Actions and AWS CodePipeline, increasing deployment frequency by 3x',
-                icon: '💼',
+                  '• Instructing 150+ students in Computer Science at National Public Inter College\n• Guiding practical MS Office and foundational app development projects\n• Developing strong communication and presentation skills through regular instruction',
+                icon: '👨‍🏫',
               },
               {
                 title: 'Software Engineer Intern',
-                period: '2021 - 2022',
+                period: 'Jun 2024 - Dec 2024',
                 description:
-                  '• Developed responsive web applications using React, TypeScript, and Node.js\n• Collaborated with senior engineers to implement RESTful APIs and database schemas\n• Participated in code reviews, contributing to improved code quality and team knowledge sharing\n• Automated testing workflows, reducing manual QA effort by 25%\n• Gained exposure to cloud platforms (AWS) and containerization technologies (Docker)',
-                icon: '🎓',
+                  '• Architected and deployed distributed microservices, delivering real-time analytics for 50,000+ monthly users at Tech Verse Solutions\n• Engineered highly scalable RESTful APIs using Python and Node.js, reducing average system latency by 25%\n• Designed cost-efficient batch processing data pipelines on AWS (EC2, S3, DynamoDB), reducing compute costs by 18%',
+                icon: '💼',
               },
               {
-                title: 'Computer Teacher',
-                period: '2020 - Present',
+                title: 'Fullstack Developer @ Coinmint',
+                period: 'Jun 2022 - Jul 2023',
                 description:
-                  '• Taught computer science concepts to diverse student groups, adapting complex topics for different learning levels\n• Created engaging curriculum materials that improved student engagement and comprehension\n• Provided individualized support to students, helping them overcome technical challenges\n• Organized coding workshops and hackathons, fostering interest in software development\n• Developed strong communication and presentation skills through regular instruction and feedback sessions',
-                icon: '👨‍🏫',
+                  '• Engineered robust backend APIs and optimized server-side data retrieval, significantly improving core platform performance\n• Spearheaded integration of critical third-party services through cross-functional collaboration with product and QA teams\n• Accelerated development speed by 20% by building responsive dynamic UIs with React and connecting to complex backend architectures',
+                icon: '🚀',
+              },
+              {
+                title: 'Fullstack Developer @ SpotLine',
+                period: 'Dec 2021 - Sep 2022',
+                description:
+                  '• Directed end-to-end development of 5+ large-scale, high-traffic web applications, driving a 20% increase in user engagement\n• Executed complete redesigns for 10+ websites, improving system performance by 25% and mobile responsiveness by 30%\n• Conducted deep-dive performance tuning on Core Web Vitals, reducing initial page load times by 30% across multiple platforms',
+                icon: '💻',
               },
             ]}
           />

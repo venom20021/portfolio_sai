@@ -65,25 +65,25 @@ export default function AboutPage() {
             <Timeline
               items={[
                 {
-                  title: 'Computer Teacher',
-                  period: '2020 - Present',
+                  title: 'Fullstack Developer',
+                  period: 'Dec 2021 - Jul 2023',
                   description:
-                    'Taught computer science fundamentals to students, developing strong communication skills and the ability to explain complex technical concepts in accessible ways.',
-                  icon: '🎓',
+                    'Delivered end-to-end development of high-traffic web applications at SpotLine and Coinmint. Engineered robust backend APIs, optimized performance, and built responsive UIs, driving significant improvements in user engagement and development speed.',
+                  icon: '🚀',
                 },
                 {
                   title: 'Software Engineer Intern',
-                  period: '2021 - 2022',
+                  period: 'Jun 2024 - Dec 2024',
                   description:
-                    'Developed full-stack web applications using React and Node.js, gaining hands-on experience in agile development and collaborative coding practices.',
+                    'Architected distributed microservices and scalable RESTful APIs at Tech Verse Solutions, delivering real-time analytics for 50,000+ monthly users. Reduced system latency by 25% and compute costs by 18% using AWS cloud platforms.',
                   icon: '💻',
                 },
                 {
-                  title: 'Fullstack Developer',
-                  period: '2022 - Present',
+                  title: 'Computer Teacher',
+                  period: 'Feb 2025 - Present',
                   description:
-                    'Architected and implemented scalable systems including ML pipelines, analytics platforms, and e-commerce architectures, focusing on performance, reliability, and business impact.',
-                  icon: '🚀',
+                    'Instructing 150+ students in Computer Science at National Public Inter College, guiding practical MS Office and foundational app development projects while honing communication and mentorship skills.',
+                  icon: '🎓',
                 },
               ]}
             />
