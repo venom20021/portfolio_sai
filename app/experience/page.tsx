@@ -27,10 +27,17 @@ export default function ExperiencePage() {
           <Timeline
             items={[
               {
-                title: 'Computer Teacher',
+                title: 'Freelance Full-Stack Engineer',
+                period: '2024 - Present',
+                description:
+                  '• Building modern full-stack applications with Next.js, React, TypeScript, and Tailwind CSS\n• Designing and implementing RESTful APIs with Node.js and cloud infrastructure on AWS\n• Active cloud learning — earning certifications and applying modern DevOps practices\n• Continuously shipping, learning, and growing as an engineer',
+                icon: '🚀',
+              },
+              {
+                title: 'Computer Science Instructor',
                 period: 'Feb 2025 - Present',
                 description:
-                  '• Instructing 150+ students in Computer Science at National Public Inter College\n• Guiding practical MS Office and foundational app development projects\n• Developing strong communication and presentation skills through regular instruction',
+                  '• Instructing 150+ students in Computer Science at National Public Inter College\n• Translating complex technical concepts into clear, accessible lessons — the same skill I use to communicate with stakeholders and cross-functional teams\n• Building mentorship and leadership capabilities that strengthen every engineering team I join',
                 icon: '👨‍🏫',
               },
               {

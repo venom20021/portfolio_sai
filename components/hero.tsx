@@ -57,8 +57,8 @@ export default function Hero() {
             </h1>
 
             <p className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed">
-              Full-stack engineer bridging deep technical expertise with product thinking to build
-              solutions that make a difference.
+              Full-stack engineer who combines production experience, cloud certification, and
+              a teacher&apos;s clarity to build products that solve real problems.
             </p>
 
             <div className="flex flex-wrap gap-3 justify-center lg:justify-start pt-2">

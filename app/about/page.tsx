@@ -45,12 +45,12 @@ export default function AboutPage() {
             About Me
           </div>
           <h2 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">
-            Product-driven Engineer with a Story
+            Engineer. Teacher. Builder.
           </h2>
           <p className="text-lg text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-            My journey from computer teacher to full-stack developer has equipped me with unique
-            abilities to bridge technical depth with clear communication. I build systems that solve
-            real problems.
+            My path from shipping full-stack applications to teaching the next generation of
+            developers has given me an uncommon blend of technical depth and clear communication.
+            I build production systems that scale — and I can explain them to anyone.
           </p>
         </motion.div>
 
@@ -65,11 +65,18 @@ export default function AboutPage() {
             <Timeline
               items={[
                 {
-                  title: 'Fullstack Developer',
-                  period: 'Dec 2021 - Jul 2023',
+                  title: 'Freelance Full-Stack Engineer',
+                  period: '2024 - Present',
                   description:
-                    'Delivered end-to-end development of high-traffic web applications at SpotLine and Coinmint. Engineered robust backend APIs, optimized performance, and built responsive UIs, driving significant improvements in user engagement and development speed.',
+                    'Delivering end-to-end full-stack solutions for clients — from REST APIs and cloud infrastructure to responsive frontends. Built this portfolio (Next.js, Tailwind CSS, Framer Motion) to showcase modern React and TypeScript expertise. Continuously expanding cloud architecture skills and earning certifications.',
                   icon: '🚀',
+                },
+                {
+                  title: 'Computer Science Instructor',
+                  period: 'Feb 2025 - Present',
+                  description:
+                    'Teaching 150+ students at National Public Inter College, breaking down complex CS concepts into accessible lessons. This experience sharpened my communication, mentorship, and leadership abilities — skills that make me a stronger collaborator and technical contributor on any engineering team.',
+                  icon: '🎓',
                 },
                 {
                   title: 'Software Engineer Intern',
@@ -79,11 +86,11 @@ export default function AboutPage() {
                   icon: '💻',
                 },
                 {
-                  title: 'Computer Teacher',
-                  period: 'Feb 2025 - Present',
+                  title: 'Fullstack Developer',
+                  period: 'Dec 2021 - Jul 2023',
                   description:
-                    'Instructing 150+ students in Computer Science at National Public Inter College, guiding practical MS Office and foundational app development projects while honing communication and mentorship skills.',
-                  icon: '🎓',
+                    'Delivered end-to-end development of high-traffic web applications at SpotLine and Coinmint. Engineered robust backend APIs, optimized performance, built responsive UIs — driving significant improvements in user engagement and development velocity.',
+                  icon: '⚡',
                 },
               ]}
             />

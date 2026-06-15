@@ -32,6 +32,15 @@ const projects = [
     image: '/projects/ecommerce-architecture.jpg',
     github: 'https://github.com/venom20021',
   },
+  {
+    id: 4,
+    title: 'Personal Portfolio 2025',
+    description: 'Designed and built a modern, animated portfolio with Next.js 14, TypeScript, and Framer Motion — featuring custom cursor, tilt cards, mouse-reactive effects, and dark/light theme.',
+    impact: 'Live showcase of modern frontend engineering: animation architecture, state management, responsive design, and performance optimization.',
+    technologies: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'React'],
+    image: '/projects/portfolio.jpg',
+    github: '#',
+  },
 ];
 
 export default function ProjectsGrid() {

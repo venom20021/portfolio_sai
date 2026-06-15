@@ -121,7 +121,8 @@ export default function SkillsPage() {
         >
           <h2 className="mb-3 text-3xl font-bold text-foreground">Technical Skills</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            Comprehensive expertise across the full stack, cloud infrastructure, and system architecture.
+            Full-stack expertise backed by production experience, cloud certification, and a
+            track record of teaching complex concepts clearly.
           </p>
         </motion.div>
 

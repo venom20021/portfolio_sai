@@ -68,6 +68,29 @@ const projects = [
       'Ensuring PCI compliance for payment processing systems',
     ],
   },
+  {
+    id: 4,
+    title: 'Personal Portfolio 2025',
+    description: 'Designed and built a modern, animated portfolio with Next.js 14, TypeScript, and Framer Motion.',
+    impact: 'Live demonstration of modern frontend engineering — animation architecture, custom hooks, mouse-reactive effects, and responsive design.',
+    technologies: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'React'],
+    image: '/projects/portfolio.jpg',
+    github: '#',
+    details: [
+      'Built a custom cursor system with spring physics for smooth, responsive pointer tracking',
+      'Implemented mouse-reactive tilt cards with configurable glare, rotation, and spring damping',
+      'Created click particle burst effects that emit from click position with framer-motion animations',
+      'Designed a mouse-beam gradient that follows the cursor for immersive visual feedback',
+      'Architected full dark/light theme with CSS custom properties and next-themes integration',
+      'Built a contact form with Zod validation, React Hook Form, and Resend email API',
+      'Added page transition animations with AnimatePresence for smooth navigation',
+    ],
+    challenges: [
+      'Optimizing animation performance — using spring configs, will-change-transform, and disabling heavy effects on touch devices',
+      'Building a cohesive design system with consistent spacing, colors, and component patterns',
+      'Ensuring accessibility alongside custom cursor and visual effects',
+    ],
+  },
 ];
 
 export default function ProjectDetailPage({ params }: { params: { id: string } }) {
