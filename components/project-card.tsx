@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Github } from 'lucide-react';
+import { Github, ExternalLink } from 'lucide-react';
 import TiltCard from '@/components/tilt-card';
 
 interface ProjectCardProps {
@@ -13,6 +13,7 @@ interface ProjectCardProps {
     technologies: string[];
     image: string;
     github: string;
+    live?: string;
   };
 }
 
@@ -70,8 +71,8 @@ export default function ProjectCard({ project }: ProjectCardProps) {
             ))}
           </div>
 
-          {/* GitHub button */}
-          <div className="pt-2">
+          {/* Links */}
+          <div className="pt-2 flex flex-wrap gap-2">
             {project.github && project.github !== '#' ? (
               <span
                 onClick={(e) => {
@@ -91,6 +92,27 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               >
                 <Github className="h-3.5 w-3.5" />
                 View Code
+              </span>
+            ) : null}
+            {project.live ? (
+              <span
+                onClick={(e) => {
+                  e.stopPropagation();
+                  window.open(project.live, '_blank', 'noopener,noreferrer');
+                }}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    window.open(project.live, '_blank', 'noopener,noreferrer');
+                  }
+                }}
+                role="link"
+                tabIndex={0}
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 cursor-pointer"
+              >
+                <ExternalLink className="h-3.5 w-3.5" />
+                Live Demo
               </span>
             ) : null}
           </div>

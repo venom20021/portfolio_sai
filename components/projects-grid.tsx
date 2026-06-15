@@ -6,6 +6,16 @@ import ProjectCard from '@/components/project-card';
 
 const projects = [
   {
+    id: 5,
+    title: 'Real-time Collaborative Whiteboard',
+    description: 'A real-time collaborative drawing application that allows multiple users to sketch, brainstorm, and visualize ideas together on a shared canvas with zero setup required.',
+    impact: 'Delivered a frictionless real-time collaboration experience with instant room creation, sub-second drawing sync, and open-source accessibility.',
+    technologies: ['Next.js', 'TypeScript', 'Yjs', 'Socket.io', 'Tailwind CSS'],
+    image: '/projects/whiteboard.jpg',
+    github: 'https://github.com/venom20021/real_time_collaborative_whiteboard',
+    live: 'https://whiteboard-app-rose-two.vercel.app/',
+  },
+  {
     id: 1,
     title: 'ML Predictive Pipeline',
     description: 'Built a machine learning pipeline for predictive analytics, reducing forecasting errors by 35% and processing time by 60%.',

@@ -3,11 +3,32 @@
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import Link from 'next/link';
-import { Github, ArrowLeft, CheckCircle2, Lightbulb } from 'lucide-react';
+import { Github, ArrowLeft, CheckCircle2, Lightbulb, ExternalLink } from 'lucide-react';
 
 export const dynamic = 'force-dynamic';
 
 const projects = [
+  {
+    id: 5,
+    title: 'Real-time Collaborative Whiteboard',
+    description: 'A real-time collaborative drawing application that allows multiple users to sketch, brainstorm, and visualize ideas together on a shared canvas with zero setup required.',
+    impact: 'Delivered a frictionless real-time collaboration experience with instant room creation, sub-second drawing sync, and open-source accessibility.',
+    technologies: ['Next.js', 'TypeScript', 'Yjs', 'Socket.io', 'Tailwind CSS'],
+    image: '/projects/whiteboard.jpg',
+    github: 'https://github.com/venom20021/real_time_collaborative_whiteboard',
+    live: 'https://whiteboard-app-rose-two.vercel.app/',
+    details: [
+      'Built real-time bi-directional synchronization using Yjs CRDT for conflict-free collaborative editing',
+      'Implemented WebSocket-based communication layer with Socket.io for low-latency room management',
+      'Designed intuitive UI with room creation/joining flow and zero authentication requirement',
+      'Deployed on Vercel with serverless WebSocket support for scalable real-time connections',
+    ],
+    challenges: [
+      'Handling concurrent drawing operations from multiple users without conflicts or data loss',
+      'Optimizing canvas rendering performance for smooth real-time drawing synchronization',
+      'Managing WebSocket connections efficiently to minimize latency across distributed users',
+    ],
+  },
   {
     id: 1,
     title: 'ML Predictive Pipeline',
@@ -135,9 +156,20 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
           <h1 className="text-3xl sm:text-4xl font-bold text-foreground mb-4">{project.title}</h1>
           <p className="text-lg text-muted-foreground mb-6 leading-relaxed">{project.description}</p>
 
-          {/* GitHub button */}
-          {project.github && project.github !== '#' ? (
-            <div className="flex flex-wrap gap-3">
+          {/* Links */}
+          <div className="flex flex-wrap gap-3">
+            {project.live ? (
+              <a
+                href={project.live}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-primary/20 bg-primary/5 text-primary font-medium hover:bg-primary/10 hover:border-primary/40 transition-all duration-200"
+              >
+                <ExternalLink className="h-4 w-4" />
+                Live Demo
+              </a>
+            ) : null}
+            {project.github && project.github !== '#' ? (
               <a
                 href={project.github}
                 target="_blank"
@@ -147,8 +179,8 @@ export default function ProjectDetailPage({ params }: { params: { id: string } }
                 <Github className="h-4 w-4" />
                 View Source Code
               </a>
-            </div>
-          ) : null}
+            ) : null}
+          </div>
         </motion.div>
 
         {/* Content grid */}
