@@ -17,7 +17,16 @@ const PARTICLE_LIFETIME = 700;
 
 export default function ClickParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
   const idRef = useRef(0);
+
+  useEffect(() => {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      setIsTouchDevice(true);
+    } else {
+      setIsTouchDevice(false);
+    }
+  }, []);
 
   const spawnParticles = useCallback((e: MouseEvent) => {
     const newParticles: Particle[] = [];
@@ -43,9 +52,12 @@ export default function ClickParticles() {
   }, []);
 
   useEffect(() => {
+    if (isTouchDevice) return;
     window.addEventListener('mousedown', spawnParticles);
     return () => window.removeEventListener('mousedown', spawnParticles);
-  }, [spawnParticles]);
+  }, [spawnParticles, isTouchDevice]);
+
+  if (isTouchDevice) return null;
 
   return (
     <AnimatePresence>

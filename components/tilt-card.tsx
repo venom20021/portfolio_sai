@@ -1,6 +1,6 @@
 'use client';
 
-import { useRef, type ReactNode, type MouseEvent } from 'react';
+import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from 'react';
 import { motion, useMotionValue, useSpring, useTransform, type SpringOptions } from 'framer-motion';
 
 interface TiltCardProps {
@@ -27,6 +27,13 @@ export default function TiltCard({
   glareOpacity = 0.4,
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
+
+  useEffect(() => {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      setIsTouchDevice(true);
+    }
+  }, []);
 
   const x = useMotionValue(0);
   const y = useMotionValue(0);
@@ -57,6 +64,15 @@ export default function TiltCard({
   function handleMouseLeave() {
     x.set(0);
     y.set(0);
+  }
+
+  // On touch devices, render a static card without tilt animations
+  if (isTouchDevice) {
+    return (
+      <div className={`relative ${className}`}>
+        {children}
+      </div>
+    );
   }
 
   return (

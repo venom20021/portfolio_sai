@@ -112,3 +112,36 @@
     text-wrap: balance;
   }
 }
+
+/* Mobile performance: disable continuous animations on touch devices */
+@media (hover: none) and (pointer: coarse) {
+  .animate-float,
+  .animate-gradient-x,
+  .animate-gradient-y,
+  .animate-pulse-slow {
+    animation: none;
+  }
+
+  /* Reduce heavy backdrop blur on mobile */
+  .blur-3xl {
+    --tw-blur: blur(48px);
+    filter: var(--tw-blur);
+  }
+
+  .backdrop-blur-xl {
+    --tw-backdrop-blur: blur(12px);
+    backdrop-filter: var(--tw-backdrop-blur);
+  }
+}
+
+/* Respect system reduced-motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

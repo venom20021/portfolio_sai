@@ -1,9 +1,16 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 
 export default function MouseBeam() {
   const beamRef = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
+
+  useEffect(() => {
+    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
+      setIsTouchDevice(true);
+    }
+  }, []);
 
   const onMouseMove = useCallback((e: MouseEvent) => {
     if (!beamRef.current) return;
@@ -14,6 +21,7 @@ export default function MouseBeam() {
   }, []);
 
   useEffect(() => {
+    if (isTouchDevice) return;
     window.addEventListener('mousemove', onMouseMove);
     // Set initial position to center
     if (beamRef.current) {
@@ -21,7 +29,9 @@ export default function MouseBeam() {
       beamRef.current.style.setProperty('--beam-y', '50%');
     }
     return () => window.removeEventListener('mousemove', onMouseMove);
-  }, [onMouseMove]);
+  }, [onMouseMove, isTouchDevice]);
+
+  if (isTouchDevice) return null;
 
   return (
     <div

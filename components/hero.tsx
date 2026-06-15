@@ -3,11 +3,19 @@
 import Link from 'next/link';
 import { ArrowRight, Download, Mail, ChevronDown } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef } from 'react';
+import { useRef, useState, useEffect } from 'react';
 import TiltCard from '@/components/tilt-card';
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
+
+  useEffect(() => {
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+      setIsTouchDevice(false);
+    }
+  }, []);
+
   const { scrollYProgress } = useScroll({
     target: sectionRef,
     offset: ['start end', 'end start'],
@@ -25,8 +33,8 @@ export default function Hero() {
       {/* Animated gradient background */}
       <div className="absolute inset-0 -z-10">
         <div className="absolute inset-0 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 animate-gradient-x bg-[length:200%_200%]" />
-        <div className="absolute top-1/4 -left-32 w-96 h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
-        <div className="absolute bottom-1/4 -right-32 w-96 h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
+        <div className="absolute top-1/4 -left-32 w-48 h-48 sm:w-96 sm:h-96 bg-primary/10 rounded-full blur-3xl animate-float" />
+        <div className="absolute bottom-1/4 -right-32 w-48 h-48 sm:w-96 sm:h-96 bg-primary/5 rounded-full blur-3xl animate-float" style={{ animationDelay: '-3s' }} />
         <div className="absolute inset-0 bg-[radial-gradient(hsl(var(--grid)/0.04)_1px,transparent_1px)] bg-[size:32px] [mask-image:radial-gradient(ellipse_at_center,black_30%,transparent_70%)]" />
       </div>
 
@@ -82,58 +90,87 @@ export default function Hero() {
           {/* Right: Photo with scroll animation */}
           <div className="relative flex justify-center lg:justify-end">
             <TiltCard tiltDegree={4} scaleOnHover={1.0} glareOpacity={0.35}>
-            <motion.div
-              className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
-              style={{
-                scale: photoScale,
-                y: photoY,
-                rotate: photoRotate,
-              }}
-            >
-              {/* Outermost decorative ring - animated rotation */}
-              <motion.div
-                className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent"
-                animate={{ rotate: 360 }}
-                transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-              />
-
-              {/* Middle decorative ring */}
-              <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-float" />
-
-              {/* Glow behind photo */}
-              <div className="absolute inset-8 rounded-full bg-primary/15 blur-2xl animate-pulse-slow" />
-
-              {/* Main photo container - circular */}
-              <motion.div
-                className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
-                whileInView={{ scale: [0.8, 1] }}
-                viewport={{ once: true, margin: '-100px' }}
-                transition={{ duration: 0.8, ease: 'easeOut' }}
-              >
-                {/* Gradient border ring */}
-                <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
-                  <div className="h-full w-full rounded-full bg-background" />
-                </div>
-
-                {/* The photo */}
-                <div className="h-full w-full rounded-full overflow-hidden bg-gradient-to-br from-muted to-background">
-                  <img
-                    src="/profile.png"
-                    alt="Sai Prabhat"
-                    className="h-full w-full object-cover object-center scale-110"
-                  />
-                </div>
-
-                {/* Name badge below photo */}
-                <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                  <div className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-lg">
-                    <span className="text-sm font-semibold text-foreground">Sai Prabhat</span>
-                    <span className="mx-1.5 text-muted-foreground/30">·</span>
-                    <span className="text-xs text-muted-foreground">Full-stack</span>
+            {isTouchDevice ? (
+              /* Static photo for mobile - no scroll animations */
+              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent" />
+                <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/10" />
+                <div className="absolute inset-8 rounded-full bg-primary/15 blur-2xl" />
+                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72">
+                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
+                    <div className="h-full w-full rounded-full bg-background" />
+                  </div>
+                  <div className="h-full w-full rounded-full overflow-hidden bg-gradient-to-br from-muted to-background">
+                    <img
+                      src="/profile.png"
+                      alt="Sai Prabhat"
+                      className="h-full w-full object-cover object-center scale-110"
+                    />
+                  </div>
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <div className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-lg">
+                      <span className="text-sm font-semibold text-foreground">Sai Prabhat</span>
+                      <span className="mx-1.5 text-muted-foreground/30">·</span>
+                      <span className="text-xs text-muted-foreground">Full-stack</span>
+                    </div>
                   </div>
                 </div>
+              </div>
+            ) : (
+              /* Animated photo for desktop - scroll-driven transforms */
+              <motion.div
+                className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
+                style={{
+                  scale: photoScale,
+                  y: photoY,
+                  rotate: photoRotate,
+                }}
+              >
+                {/* Outermost decorative ring - animated rotation */}
+                <motion.div
+                  className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent"
+                  animate={{ rotate: 360 }}
+                  transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
+                />
+
+                {/* Middle decorative ring */}
+                <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/10 animate-float" />
+
+                {/* Glow behind photo */}
+                <div className="absolute inset-8 rounded-full bg-primary/15 blur-2xl animate-pulse-slow" />
+
+                {/* Main photo container - circular */}
+                <motion.div
+                  className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
+                  whileInView={{ scale: [0.8, 1] }}
+                  viewport={{ once: true, margin: '-100px' }}
+                  transition={{ duration: 0.8, ease: 'easeOut' }}
+                >
+                  {/* Gradient border ring */}
+                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
+                    <div className="h-full w-full rounded-full bg-background" />
+                  </div>
+
+                  {/* The photo */}
+                  <div className="h-full w-full rounded-full overflow-hidden bg-gradient-to-br from-muted to-background">
+                    <img
+                      src="/profile.png"
+                      alt="Sai Prabhat"
+                      className="h-full w-full object-cover object-center scale-110"
+                    />
+                  </div>
+
+                  {/* Name badge below photo */}
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
+                    <div className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-lg">
+                      <span className="text-sm font-semibold text-foreground">Sai Prabhat</span>
+                      <span className="mx-1.5 text-muted-foreground/30">·</span>
+                      <span className="text-xs text-muted-foreground">Full-stack</span>
+                    </div>
+                  </div>
+                </motion.div>
               </motion.div>
-            </motion.div>
+            )}
             </TiltCard>
           </div>
         </div>
