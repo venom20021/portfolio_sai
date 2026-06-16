@@ -16,15 +16,12 @@ const boilerplatePrompts = [
   'Create a React component with TypeScript interfaces',
   'Write a Docker Compose for a full-stack app',
   'Generate an AWS Lambda function in TypeScript',
-  'Create a FastAPI CRUD endpoint boilerplate',
-  'Generate a Tailwind CSS component with animations',
 ];
 
 const suggestedQuestions = [
   "Explain Sai's collaborative whiteboard project",
   'What tech stack does this portfolio use?',
-  'Suggest improvements for my React component',
-  ...boilerplatePrompts.slice(0, 2),
+  ...boilerplatePrompts.slice(0, 3),
 ];
 
 export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChatProps) {
