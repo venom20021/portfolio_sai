@@ -1,7 +1,7 @@
 'use client';
 
 import Link from 'next/link';
-import { Github, Mail, Linkedin, ArrowUp } from 'lucide-react';
+import { Github, Mail, Linkedin, ArrowUp, Sparkles, type LucideIcon } from 'lucide-react';
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -33,6 +33,7 @@ export default function Footer() {
                 { href: '/', label: 'Home' },
                 { href: '/about', label: 'About' },
                 { href: '/projects', label: 'Projects' },
+                { href: '/ai-mentor', label: 'AI Mentor', icon: Sparkles },
                 { href: '/contact', label: 'Contact' },
               ].map((link) => (
                 <li key={link.href}>
@@ -40,6 +41,7 @@ export default function Footer() {
                     href={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                   >
+                    {link.icon && <link.icon className="h-3 w-3 inline mr-1" />}
                     {link.label}
                   </Link>
                 </li>
@@ -70,7 +72,9 @@ export default function Footer() {
                       href={link.href}
                       className="text-sm text-muted-foreground hover:text-primary transition-colors duration-200"
                     >
-                      {link.label}
+                      <span className="flex items-center gap-1.5">
+                        {link.label}
+                      </span>
                     </Link>
                   )}
                 </li>

@@ -16,6 +16,15 @@ const projects = [
     live: 'https://whiteboard-app-rose-two.vercel.app/',
   },
   {
+    id: 4,
+    title: 'Personal Portfolio 2026',
+    description: 'A modern, animated portfolio featuring an AI Code Mentor powered by Groq (Llama 3.3 70B), custom cursor, tilt cards, mouse-reactive effects, and dark/light theme.',
+    impact: 'Live showcase of AI productization: an AI Code Mentor integrated directly into the site using AI SDK 6.0 with streaming chat, floating widget, and tool-call-free architecture.',
+    technologies: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'AI SDK 6.0', 'Groq (Llama 3.3 70B)'],
+    image: '/projects/portfolio.jpg',
+    github: '#',
+  },
+  {
     id: 1,
     title: 'ML Predictive Pipeline',
     description: 'Built a machine learning pipeline for predictive analytics, reducing forecasting errors by 35% and processing time by 60%.',
@@ -41,15 +50,6 @@ const projects = [
     technologies: ['Node.js', 'React', 'Docker', 'AWS', 'Terraform', 'MongoDB'],
     image: '/projects/ecommerce-architecture.jpg',
     github: 'https://github.com/venom20021',
-  },
-  {
-    id: 4,
-    title: 'Personal Portfolio 2025',
-    description: 'Designed and built a modern, animated portfolio with Next.js 14, TypeScript, and Framer Motion — featuring custom cursor, tilt cards, mouse-reactive effects, and dark/light theme.',
-    impact: 'Live showcase of modern frontend engineering: animation architecture, state management, responsive design, and performance optimization.',
-    technologies: ['Next.js', 'TypeScript', 'Framer Motion', 'Tailwind CSS', 'React'],
-    image: '/projects/portfolio.jpg',
-    github: '#',
   },
 ];
 

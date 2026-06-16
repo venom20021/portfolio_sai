@@ -2,18 +2,26 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun, Menu, X } from 'lucide-react';
+import { Moon, Sun, Menu, X, Sparkles, type LucideIcon } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 
-const navLinks = [
+type NavLink = { href: string; label: string; icon?: LucideIcon };
+
+const navLinks: NavLink[] = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/experience', label: 'Experience' },
   { href: '/projects', label: 'Projects' },
   { href: '/skills', label: 'Skills' },
+  { href: '/ai-mentor', label: 'AI Mentor', icon: Sparkles },
   { href: '/contact', label: 'Contact' },
 ];
+
+function NavLinkIcon({ icon: Icon }: { icon?: LucideIcon }) {
+  if (!Icon) return null;
+  return <Icon className="h-3.5 w-3.5" />;
+}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -77,7 +85,10 @@ export default function Navbar() {
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
-                {link.label}
+                <span className="flex items-center gap-1.5">
+                  <NavLinkIcon icon={link.icon} />
+                  {link.label}
+                </span>
                 {isActive(link.href) && (
                   <span className="absolute inset-x-2 bottom-0.5 h-0.5 rounded-full bg-primary" />
                 )}
@@ -132,7 +143,10 @@ export default function Navbar() {
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
             >
-              {link.label}
+              <span className="flex items-center gap-1.5">
+                <NavLinkIcon icon={link.icon} />
+                {link.label}
+              </span>
             </Link>
           ))}
         </nav>

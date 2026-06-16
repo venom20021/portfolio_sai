@@ -8,6 +8,7 @@ import AnimatedLayout from '@/components/animated-layout';
 import MouseBeam from '@/components/mouse-beam';
 import CustomCursor from '@/components/custom-cursor';
 import ClickParticles from '@/components/click-particles';
+import AIMentorButton from '@/components/ai-mentor-button';
 import { Toaster } from 'sonner';
 
 const inter = Inter({ subsets: ['latin'] });
@@ -55,6 +56,7 @@ export default function RootLayout({
             <AnimatedLayout>{children}</AnimatedLayout>
           </main>
           <Footer />
+          <AIMentorButton />
           <Toaster position="bottom-right" richColors closeButton />
         </ThemeProvider>
       </body>
