@@ -2,7 +2,15 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Moon, Sun, Menu, X, Sparkles, type LucideIcon } from 'lucide-react';
+import {
+  Moon,
+  Sun,
+  Menu,
+  X,
+  Sparkles,
+  Download,
+  type LucideIcon,
+} from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 
@@ -98,6 +106,16 @@ export default function Navbar() {
 
           {/* Actions */}
           <div className="flex items-center gap-2">
+            {/* Download Resume */}
+            <a
+              href="/sai-prabhat-resume.pdf"
+              download
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-primary/20"
+            >
+              <Download className="h-4 w-4" />
+              <span>Resume</span>
+            </a>
+
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
@@ -129,7 +147,7 @@ export default function Navbar() {
       {/* Mobile Nav */}
       <div
         className={`md:hidden transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          isOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
         <nav className="border-t border-border/50 bg-background/95 backdrop-blur-xl px-4 py-4 space-y-1">
@@ -149,6 +167,16 @@ export default function Navbar() {
               </span>
             </Link>
           ))}
+
+          {/* Mobile Download Resume */}
+          <a
+            href="/sai-prabhat-resume.pdf"
+            download
+            className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-all duration-200 mt-2"
+          >
+            <Download className="h-4 w-4" />
+            Download Resume
+          </a>
         </nav>
       </div>
     </header>

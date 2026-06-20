@@ -1,9 +1,10 @@
 'use client';
 
-import Link from 'next/link';
 import { motion } from 'framer-motion';
-import { ArrowRight, Target, Users, Wrench, Sparkles } from 'lucide-react';
+import { Target, Users, Wrench, Sparkles } from 'lucide-react';
 import Timeline from '@/components/timeline';
+import TiltCard from '@/components/tilt-card';
+
 
 const values = [
   {
@@ -12,6 +13,7 @@ const values = [
     description:
       'I focus on solutions that deliver measurable business value and improve user experiences.',
     color: 'from-blue-500/20 to-blue-600/10',
+    glowColor: 'rgba(59, 130, 246, 0.15)',
   },
   {
     icon: Users,
@@ -19,6 +21,7 @@ const values = [
     description:
       'My teaching background enhances my ability to work effectively with cross-functional teams and stakeholders.',
     color: 'from-emerald-500/20 to-emerald-600/10',
+    glowColor: 'rgba(16, 185, 129, 0.15)',
   },
   {
     icon: Wrench,
@@ -26,6 +29,7 @@ const values = [
     description:
       'I believe in writing clean, maintainable code and following best practices in software engineering.',
     color: 'from-amber-500/20 to-amber-600/10',
+    glowColor: 'rgba(245, 158, 11, 0.15)',
   },
 ];
 
@@ -55,6 +59,7 @@ export default function AboutPage() {
         </motion.div>
 
         <div className="space-y-16">
+
           {/* Professional Journey */}
           <motion.div
             initial={{ y: 20, opacity: 0 }}
@@ -104,27 +109,56 @@ export default function AboutPage() {
           >
             <h3 className="mb-6 text-2xl font-semibold text-foreground">Core Values</h3>
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-              {values.map((value) => {
+              {values.map((value, index) => {
                 const Icon = value.icon;
                 return (
-                  <div
+                  <motion.div
                     key={value.title}
-                    className="p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300"
+                    initial={{ y: 30, opacity: 0, scale: 0.95 }}
+                    whileInView={{ y: 0, opacity: 1, scale: 1 }}
+                    viewport={{ once: true, margin: '-50px' }}
+                    transition={{ duration: 0.5, delay: index * 0.1, ease: 'easeOut' }}
                   >
-                    <div className="flex items-start gap-4">
+                    <TiltCard tiltDegree={5} scaleOnHover={1.02} glareOpacity={0.2}>
                       <div
-                        className={`p-3 rounded-xl bg-gradient-to-br ${value.color} border border-border/50 shrink-0`}
+                        className={`group relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 h-full overflow-hidden`}
                       >
-                        <Icon className="h-5 w-5 text-foreground" />
+                        {/* Hover glow effect */}
+                        <div
+                          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          style={{
+                            background: `radial-gradient(600px circle at 50% 50%, ${value.glowColor}, transparent 60%)`,
+                          }}
+                        />
+
+                        <div className="relative z-10 flex items-start gap-4">
+                          <motion.div
+                            whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
+                            transition={{ duration: 0.4 }}
+                            className={`p-3 rounded-xl bg-gradient-to-br ${value.color} group-hover:scale-110 group-hover:shadow-lg transition-all duration-300 border border-border/50 shrink-0`}
+                          >
+                            <Icon className="h-5 w-5 text-foreground" />
+                          </motion.div>
+                          <div className="space-y-1.5">
+                            <h4 className="font-semibold text-foreground group-hover:text-primary transition-colors duration-300">
+                              {value.title}
+                            </h4>
+                            <p className="text-sm text-muted-foreground leading-relaxed group-hover:text-foreground/80 transition-colors duration-300">
+                              {value.description}
+                            </p>
+                          </div>
+                        </div>
+
+                        {/* Bottom accent bar */}
+                        <motion.div
+                          className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-primary/50 to-transparent origin-left"
+                          initial={{ scaleX: 0 }}
+                          whileHover={{ scaleX: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
                       </div>
-                      <div>
-                        <h4 className="font-semibold text-foreground mb-1">{value.title}</h4>
-                        <p className="text-sm text-muted-foreground leading-relaxed">
-                          {value.description}
-                        </p>
-                      </div>
-                    </div>
-                  </div>
+                    </TiltCard>
+                  </motion.div>
                 );
               })}
             </div>

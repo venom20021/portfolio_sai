@@ -1,113 +1,98 @@
 'use client';
 
-import { useRef, useState, useEffect, type ReactNode, type MouseEvent } from 'react';
-import { motion, useMotionValue, useSpring, useTransform, type SpringOptions } from 'framer-motion';
+import { useRef, useState, useEffect, useCallback } from 'react';
+import type { ReactNode } from 'react';
 
 interface TiltCardProps {
   children: ReactNode;
   className?: string;
   tiltDegree?: number;
   scaleOnHover?: number;
-  glareColor?: string;
   glareOpacity?: number;
+  glareColor?: string;
 }
-
-const SPRING_CONFIG: SpringOptions = {
-  stiffness: 300,
-  damping: 25,
-  mass: 0.5,
-};
 
 export default function TiltCard({
   children,
   className = '',
-  tiltDegree = 8,
-  scaleOnHover = 1.015,
-  glareColor = 'hsl(var(--primary) / 0.08)',
-  glareOpacity = 0.4,
+  tiltDegree = 5,
+  scaleOnHover = 1.02,
+  glareOpacity = 0.25,
+  glareColor = '255, 255, 255',
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
+  const rafRef = useRef<number | null>(null);
   const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const [style, setStyle] = useState<React.CSSProperties>({});
+  const [glareStyle, setGlareStyle] = useState<React.CSSProperties>({});
+  const [isHovered, setIsHovered] = useState(false);
 
   useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      setIsTouchDevice(true);
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+      setIsTouchDevice(false);
     }
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
   }, []);
 
-  const x = useMotionValue(0);
-  const y = useMotionValue(0);
+  const handleMouseMove = useCallback((e: React.MouseEvent) => {
+    if (rafRef.current) return;
+    rafRef.current = requestAnimationFrame(() => {
+      rafRef.current = null;
+      if (!ref.current || isTouchDevice) return;
+      const rect = ref.current.getBoundingClientRect();
+      const x = (e.clientX - rect.left) / rect.width;
+      const y = (e.clientY - rect.top) / rect.height;
 
-  const smoothX = useSpring(x, SPRING_CONFIG);
-  const smoothY = useSpring(y, SPRING_CONFIG);
+      const rotateX = (y - 0.5) * -tiltDegree;
+      const rotateY = (x - 0.5) * tiltDegree;
 
-  const rotateX = useTransform(smoothY, [-0.5, 0.5], [tiltDegree, -tiltDegree]);
-  const rotateY = useTransform(smoothX, [-0.5, 0.5], [-tiltDegree, tiltDegree]);
+      setStyle({
+        transform: `perspective(800px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(${isHovered ? scaleOnHover : 1}, ${isHovered ? scaleOnHover : 1}, 1)`,
+        transition: 'transform 0.05s ease-out',
+        willChange: 'transform',
+      });
 
-  const glareX = useTransform(smoothX, [-0.5, 0.5], [0, 100]);
-  const glareY = useTransform(smoothY, [-0.5, 0.5], [0, 100]);
+      setGlareStyle({
+        background: `radial-gradient(circle at ${x * 100}% ${y * 100}%, rgba(${glareColor}, ${glareOpacity}) 0%, transparent 60%)`,
+      });
+    });
+  }, [isTouchDevice, tiltDegree, scaleOnHover, isHovered, glareColor, glareOpacity]);
 
-  function handleMouseMove(e: MouseEvent<HTMLDivElement>) {
-    const rect = ref.current?.getBoundingClientRect();
-    if (!rect) return;
+  const handleMouseEnter = useCallback(() => setIsHovered(true), []);
 
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
+  const handleMouseLeave = useCallback(() => {
+    setIsHovered(false);
+    if (rafRef.current) {
+      cancelAnimationFrame(rafRef.current);
+      rafRef.current = null;
+    }
+    setStyle({
+      transform: 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)',
+      transition: 'transform 0.4s ease-out',
+    });
+    setGlareStyle({});
+  }, []);
 
-    const normX = (e.clientX - centerX) / rect.width;
-    const normY = (e.clientY - centerY) / rect.height;
-
-    x.set(normX);
-    y.set(normY);
-  }
-
-  function handleMouseLeave() {
-    x.set(0);
-    y.set(0);
-  }
-
-  // On touch devices, render a static card without tilt animations
   if (isTouchDevice) {
-    return (
-      <div className={`relative ${className}`}>
-        {children}
-      </div>
-    );
+    return <div className={className}>{children}</div>;
   }
 
   return (
-    <motion.div
+    <div
       ref={ref}
-      className={`relative ${className}`}
-      style={{
-        perspective: 800,
-        transformStyle: 'preserve-3d',
-      }}
-      animate={{ scale: 1 }}
-      whileHover={{ scale: scaleOnHover }}
       onMouseMove={handleMouseMove}
+      onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
+      style={style}
+      className={`relative ${className}`}
     >
-      <motion.div
-        className="relative w-full h-full"
-        style={{
-          rotateX,
-          rotateY,
-          transformStyle: 'preserve-3d',
-        }}
-      >
-        {children}
-
-        {/* Glare overlay */}
-        <motion.div
-          className="pointer-events-none absolute inset-0 rounded-[inherit]"
-          style={{
-            background: `radial-gradient(circle at ${glareX}% ${glareY}%, ${glareColor}, transparent 70%)`,
-            opacity: glareOpacity,
-            transform: 'translateZ(20px)',
-          }}
-        />
-      </motion.div>
-    </motion.div>
+      {children}
+      <div
+        className="pointer-events-none absolute inset-0 rounded-2xl"
+        style={glareStyle}
+      />
+    </div>
   );
 }

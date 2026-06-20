@@ -1,45 +1,39 @@
 'use client';
 
-import { useEffect, useRef, useCallback, useState } from 'react';
+import { useEffect, useRef } from 'react';
 
 export default function MouseBeam() {
   const beamRef = useRef<HTMLDivElement>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const rafRef = useRef<number | null>(null);
 
   useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      setIsTouchDevice(true);
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+      const handleMouseMove = (e: MouseEvent) => {
+        if (rafRef.current) return;
+        rafRef.current = requestAnimationFrame(() => {
+          rafRef.current = null;
+          if (beamRef.current) {
+            beamRef.current.style.setProperty('--beam-x', `${e.clientX}px`);
+            beamRef.current.style.setProperty('--beam-y', `${e.clientY}px`);
+          }
+        });
+      };
+
+      window.addEventListener('mousemove', handleMouseMove, { passive: true });
+      return () => {
+        window.removeEventListener('mousemove', handleMouseMove);
+        if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      };
     }
   }, []);
-
-  const onMouseMove = useCallback((e: MouseEvent) => {
-    if (!beamRef.current) return;
-    const x = (e.clientX / window.innerWidth) * 100;
-    const y = (e.clientY / window.innerHeight) * 100;
-    beamRef.current.style.setProperty('--beam-x', `${x}%`);
-    beamRef.current.style.setProperty('--beam-y', `${y}%`);
-  }, []);
-
-  useEffect(() => {
-    if (isTouchDevice) return;
-    window.addEventListener('mousemove', onMouseMove);
-    // Set initial position to center
-    if (beamRef.current) {
-      beamRef.current.style.setProperty('--beam-x', '50%');
-      beamRef.current.style.setProperty('--beam-y', '50%');
-    }
-    return () => window.removeEventListener('mousemove', onMouseMove);
-  }, [onMouseMove, isTouchDevice]);
-
-  if (isTouchDevice) return null;
 
   return (
     <div
       ref={beamRef}
-      className="fixed inset-0 pointer-events-none z-0"
+      className="pointer-events-none fixed inset-0 z-30 opacity-30"
       style={{
         background:
-          'radial-gradient(600px circle at var(--beam-x, 50%) var(--beam-y, 50%), hsl(var(--primary) / var(--beam-opacity, 0.08)), transparent 50%)',
+          'radial-gradient(600px at var(--beam-x, 50%) var(--beam-y, 50%), hsl(var(--primary) / 0.08), transparent 80%)',
       }}
     />
   );

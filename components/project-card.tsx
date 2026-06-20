@@ -6,7 +6,7 @@ import TiltCard from '@/components/tilt-card';
 
 interface ProjectCardProps {
   project: {
-    id: number;
+    id: string;
     title: string;
     description: string;
     impact: string;

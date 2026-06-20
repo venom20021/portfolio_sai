@@ -1,144 +1,94 @@
 'use client';
 
-import { useEffect, useState, useCallback } from 'react';
-import { motion, useMotionValue, useSpring, type SpringOptions } from 'framer-motion';
+import { useState, useEffect, useCallback, useRef } from 'react';
 
-// Tighter springs for less lag
-const DOT_SPRING: SpringOptions = {
-  stiffness: 800,
-  damping: 40,
-  mass: 0.15,
-};
-
-const RING_SPRING: SpringOptions = {
-  stiffness: 350,
-  damping: 20,
-  mass: 0.3,
-};
+const THROTTLE_MS = 16; // ~60fps
 
 export default function CustomCursor() {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
-  const [isTouchDevice, setIsTouchDevice] = useState(false);
-  const [clicked, setClicked] = useState(false);
-
-  const cursorX = useMotionValue(-100);
-  const cursorY = useMotionValue(-100);
-  const ringX = useMotionValue(-100);
-  const ringY = useMotionValue(-100);
-
-  const smoothX = useSpring(cursorX, DOT_SPRING);
-  const smoothY = useSpring(cursorY, DOT_SPRING);
-  const smoothRingX = useSpring(ringX, RING_SPRING);
-  const smoothRingY = useSpring(ringY, RING_SPRING);
+  const [isClicking, setIsClicking] = useState(false);
+  const lastMoveRef = useRef(0);
 
   useEffect(() => {
-    if ('ontouchstart' in window || navigator.maxTouchPoints > 0) {
-      setIsTouchDevice(true);
-      return;
+    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
+      setIsTouchDevice(false);
     }
-    setIsVisible(true);
   }, []);
 
-  const onMouseMove = useCallback(
-    (e: MouseEvent) => {
-      cursorX.set(e.clientX);
-      cursorY.set(e.clientY);
-      ringX.set(e.clientX);
-      ringY.set(e.clientY);
-    },
-    [cursorX, cursorY, ringX, ringY],
-  );
+  const handleMouseMove = useCallback((e: MouseEvent) => {
+    const now = Date.now();
+    if (now - lastMoveRef.current < THROTTLE_MS) return;
+    lastMoveRef.current = now;
+    setPosition({ x: e.clientX, y: e.clientY });
+  }, []);
 
-  const onMouseOver = useCallback((e: MouseEvent) => {
+  const handleMouseOver = useCallback((e: MouseEvent) => {
     const target = e.target as HTMLElement;
-    const isClickable =
-      target.tagName === 'A' ||
+    const isInteractive =
       target.tagName === 'BUTTON' ||
-      target.tagName === 'INPUT' ||
-      target.tagName === 'TEXTAREA' ||
-      target.tagName === 'SELECT' ||
-      target.closest('a') ||
+      target.tagName === 'A' ||
       target.closest('button') ||
-      target.getAttribute('role') === 'button' ||
-      target.closest('[role="button"]') ||
-      target.closest('[data-cursor-hover]') ||
-      target.classList.contains('tilt-card');
-
-    setIsHovering(!!isClickable);
+      target.closest('a') ||
+      target.closest('[data-cursor-hover]');
+    setIsHovering(!!isInteractive);
   }, []);
 
-  const onMouseDown = useCallback(() => {
-    setClicked(true);
-    setTimeout(() => setClicked(false), 150);
-  }, []);
+  const handleMouseDown = useCallback(() => setIsClicking(true), []);
+  const handleMouseUp = useCallback(() => setIsClicking(false), []);
 
   useEffect(() => {
     if (isTouchDevice) return;
-    window.addEventListener('mousemove', onMouseMove);
-    window.addEventListener('mouseover', onMouseOver);
-    window.addEventListener('mousedown', onMouseDown);
-    window.addEventListener('mouseup', () => setClicked(false));
+    window.addEventListener('mousemove', handleMouseMove);
+    window.addEventListener('mouseover', handleMouseOver);
+    window.addEventListener('mousedown', handleMouseDown);
+    window.addEventListener('mouseup', handleMouseUp);
     return () => {
-      window.removeEventListener('mousemove', onMouseMove);
-      window.removeEventListener('mouseover', onMouseOver);
-      window.removeEventListener('mousedown', onMouseDown);
-      window.removeEventListener('mouseup', () => setClicked(false));
+      window.removeEventListener('mousemove', handleMouseMove);
+      window.removeEventListener('mouseover', handleMouseOver);
+      window.removeEventListener('mousedown', handleMouseDown);
+      window.removeEventListener('mouseup', handleMouseUp);
     };
-  }, [isTouchDevice, onMouseMove, onMouseOver, onMouseDown]);
+  }, [isTouchDevice, handleMouseMove, handleMouseOver, handleMouseDown, handleMouseUp]);
 
-  if (isTouchDevice || !isVisible) return null;
+  if (isTouchDevice) return null;
+
+  const dotSize = isClicking ? 6 : isHovering ? 10 : 8;
+  const ringSize = isClicking ? 28 : isHovering ? 48 : 36;
 
   return (
     <>
-      {/* Main cursor dot — near-instant tracking */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9999] will-change-transform"
+      {/* Main dot */}
+      <div
+        className="fixed pointer-events-none z-[9999] mix-blend-difference"
         style={{
-          x: smoothX,
-          y: smoothY,
-          translateX: '-50%',
-          translateY: '-50%',
+          left: position.x,
+          top: position.y,
+          width: dotSize,
+          height: dotSize,
+          borderRadius: '50%',
+          backgroundColor: 'hsl(var(--primary))',
+          transform: 'translate(-50%, -50%)',
+          transition: 'width 0.15s, height 0.15s',
+          willChange: 'transform',
         }}
-      >
-        <motion.div
-          className="rounded-full bg-primary"
-          animate={{
-            width: isHovering ? 14 : 8,
-            height: isHovering ? 14 : 8,
-            scale: clicked ? 0.7 : 1,
-            opacity: isHovering ? 0.9 : 1,
-          }}
-          transition={{ duration: 0.12, ease: 'easeOut' }}
-        />
-      </motion.div>
-
-      {/* Trailing ring — slight lag for smooth effect */}
-      <motion.div
-        className="fixed top-0 left-0 pointer-events-none z-[9998] will-change-transform"
+      />
+      {/* Trailing ring */}
+      <div
+        className="fixed pointer-events-none z-[9998]"
         style={{
-          x: smoothRingX,
-          y: smoothRingY,
-          translateX: '-50%',
-          translateY: '-50%',
+          left: position.x,
+          top: position.y,
+          width: ringSize,
+          height: ringSize,
+          borderRadius: '50%',
+          border: '1.5px solid hsl(var(--primary) / 0.4)',
+          transform: 'translate(-50%, -50%)',
+          transition: 'width 0.25s ease-out, height 0.25s ease-out, left 0.12s linear, top 0.12s linear',
+          willChange: 'transform',
         }}
-      >
-        <motion.div
-          className="rounded-full border"
-          animate={{
-            width: isHovering ? 48 : 32,
-            height: isHovering ? 48 : 32,
-            borderColor: isHovering
-              ? 'hsl(var(--primary) / 0.7)'
-              : 'hsl(var(--primary) / 0.3)',
-            backgroundColor: isHovering
-              ? 'hsl(var(--primary) / 0.08)'
-              : 'transparent',
-            scale: clicked ? 1.4 : 1,
-          }}
-          transition={{ duration: 0.18, ease: 'easeOut' }}
-        />
-      </motion.div>
+      />
     </>
   );
 }
