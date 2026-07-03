@@ -1,31 +1,33 @@
 'use client';
 
 import { useEffect, useRef } from 'react';
+import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 export default function MouseBeam() {
   const beamRef = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
+  const isTouchDevice = useIsTouchDevice();
 
   useEffect(() => {
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-      const handleMouseMove = (e: MouseEvent) => {
-        if (rafRef.current) return;
-        rafRef.current = requestAnimationFrame(() => {
-          rafRef.current = null;
-          if (beamRef.current) {
-            beamRef.current.style.setProperty('--beam-x', `${e.clientX}px`);
-            beamRef.current.style.setProperty('--beam-y', `${e.clientY}px`);
-          }
-        });
-      };
+    if (isTouchDevice) return;
 
-      window.addEventListener('mousemove', handleMouseMove, { passive: true });
-      return () => {
-        window.removeEventListener('mousemove', handleMouseMove);
-        if (rafRef.current) cancelAnimationFrame(rafRef.current);
-      };
-    }
-  }, []);
+    const handleMouseMove = (e: MouseEvent) => {
+      if (rafRef.current) return;
+      rafRef.current = requestAnimationFrame(() => {
+        rafRef.current = null;
+        if (beamRef.current) {
+          beamRef.current.style.setProperty('--beam-x', `${e.clientX}px`);
+          beamRef.current.style.setProperty('--beam-y', `${e.clientY}px`);
+        }
+      });
+    };
+
+    window.addEventListener('mousemove', handleMouseMove, { passive: true });
+    return () => {
+      window.removeEventListener('mousemove', handleMouseMove);
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [isTouchDevice]);
 
   return (
     <div

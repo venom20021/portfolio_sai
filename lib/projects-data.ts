@@ -42,6 +42,58 @@ export const projects: Project[] = [
       'Integrating AI streaming responses with a smooth UI required careful state management and skeleton loading states.',
   },
   {
+    id: 'ai-resume-builder',
+    title: 'AI-Powered Resume Builder',
+    description:
+      'A modern resume builder that creates polished, ATS-friendly resumes with AI-powered wording suggestions, multiple professional templates, job description matching, and PDF generation — all powered by Google Gemini.',
+    impact:
+      'Delivered a full-featured resume builder with Gemini-powered AI writing assistance, 3 professional templates with matching PDF styles, and 58 passing unit tests.',
+    technologies: [
+      'Next.js',
+      'TypeScript',
+      'Tailwind CSS',
+      'Google Gemini',
+      'React',
+      'shadcn/ui',
+      'Lucide',
+      'Sonner',
+      'Vitest',
+    ],
+    image: '/projects/ai-resume-builder.svg',
+    github: 'https://github.com/venom20021/AI_Resume_Generator',
+    live: 'https://ai-resume-generator-swart-gamma.vercel.app/',
+    details:
+      'Features a guided 5-step resume builder (Personal Info, Education, Experience, Skills, Job Match), AI-powered improvements for summaries and bullet points, skill suggestions from role descriptions, job description matching to optimize resumes for specific roles, 3 professional templates (Modern, Classic, Minimal), server-side PDF generation via @react-pdf/renderer, and JSON import/export for data portability.',
+    challenges:
+      'Implementing AI-powered content generation that produces natural, professional phrasing across multiple resume sections. Building server-side PDF generation that perfectly matches the on-screen template previews. Designing a responsive multi-step form with complex state management across education, experience, and skill entries.',
+  },
+  {
+    id: 'ludo-royale',
+    title: 'Ludo Royale',
+    description:
+      'A cloud-native, production-ready real-time multiplayer Ludo platform with server-authoritative game logic, secure authentication, matchmaking, player profiles, leaderboards, and WebSocket-based real-time communication.',
+    impact:
+      'Built a scalable cloud-native multiplayer gaming platform with a server-authoritative game engine ensuring fair play through deterministic dice generation and server-side rule validation.',
+    technologies: [
+      'TypeScript',
+      'React',
+      'Next.js',
+      'NestJS',
+      'Socket.IO',
+      'PostgreSQL',
+      'Redis',
+      'Docker',
+      'AWS',
+      'Tailwind CSS',
+    ],
+    image: '/projects/ludo-royale.svg',
+    github: 'https://github.com/venom20021/Ludo_royale',
+    details:
+      'Ludo Royale implements a server-authoritative architecture where all game logic, dice generation, and move validation are processed on the backend to prevent cheating. It features real-time WebSocket communication, public matchmaking with Elo-based leaderboards, private rooms with invite codes, and comprehensive player profiles with match history and achievements.',
+    challenges:
+      'Building a scalable WebSocket architecture capable of handling multiple concurrent game sessions with minimal latency. Designing a fault-tolerant game state recovery mechanism using Redis and PostgreSQL to handle unexpected server disconnects. Optimizing AWS infrastructure, Redis caching, and database queries for high traffic performance.',
+  },
+  {
     id: 'ml-pipeline',
     title: 'ML Predictive Pipeline',
     description:
@@ -69,18 +121,18 @@ export const projects: Project[] = [
     challenges:
       'Ensuring exactly-once processing semantics in a distributed streaming system required careful coordination between Kafka offsets and database transactions.',
   },
-  {
-    id: 'ecommerce-architecture',
-    title: 'Scalable E-Commerce Architecture',
-    description:
-      'Designed and deployed a cloud-native e-commerce platform with microservices, event-driven communication, and Infrastructure as Code.',
-    impact: 'Architected for 99.9% uptime with auto-scaling across 3 availability zones.',
-    technologies: ['Node.js', 'React', 'Docker', 'AWS', 'Terraform', 'MongoDB'],
-    image: '/projects/ecommerce.jpg',
-    github: 'https://github.com/venom20021',
-    details:
-      'The platform uses a microservices architecture with event-driven communication via message queues. Terraform manages all infrastructure as code across staging and production environments.',
-    challenges:
-      'Designing a consistent data model across distributed services required implementing the Saga pattern for distributed transactions and eventual consistency.',
-  },
+  // {
+  //   id: 'ecommerce-architecture',
+  //   title: 'Scalable E-Commerce Architecture',
+  //   description:
+  //     'Designed and deployed a cloud-native e-commerce platform with microservices, event-driven communication, and Infrastructure as Code.',
+  //   impact: 'Architected for 99.9% uptime with auto-scaling across 3 availability zones.',
+  //   technologies: ['Node.js', 'React', 'Docker', 'AWS', 'Terraform', 'MongoDB'],
+  //   image: '/projects/ecommerce.jpg',
+  //   github: 'https://github.com/venom20021',
+  //   details:
+  //     'The platform uses a microservices architecture with event-driven communication via message queues. Terraform manages all infrastructure as code across staging and production environments.',
+  //   challenges:
+  //     'Designing a consistent data model across distributed services required implementing the Saga pattern for distributed transactions and eventual consistency.',
+  // },
 ];

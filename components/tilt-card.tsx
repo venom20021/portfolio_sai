@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
+import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 interface TiltCardProps {
   children: ReactNode;
@@ -22,15 +23,13 @@ export default function TiltCard({
 }: TiltCardProps) {
   const ref = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const isTouchDevice = useIsTouchDevice();
   const [style, setStyle] = useState<React.CSSProperties>({});
   const [glareStyle, setGlareStyle] = useState<React.CSSProperties>({});
   const [isHovered, setIsHovered] = useState(false);
 
+  // Cleanup rafRef on unmount
   useEffect(() => {
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-      setIsTouchDevice(false);
-    }
     return () => {
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
     };

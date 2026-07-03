@@ -2,6 +2,7 @@
 
 import { useState, useEffect, useCallback } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 interface Particle {
   id: number;
@@ -19,13 +20,7 @@ let particleId = 0;
 
 export default function ClickParticles() {
   const [particles, setParticles] = useState<Particle[]>([]);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
-
-  useEffect(() => {
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-      setIsTouchDevice(false);
-    }
-  }, []);
+  const isTouchDevice = useIsTouchDevice();
 
   const handleClick = useCallback((e: MouseEvent) => {
     const newParticles: Particle[] = [];

@@ -1,21 +1,16 @@
 'use client';
 
 import { useState, useEffect, useCallback, useRef } from 'react';
+import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 const THROTTLE_MS = 16; // ~60fps
 
 export default function CustomCursor() {
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
+  const isTouchDevice = useIsTouchDevice();
   const [position, setPosition] = useState({ x: -100, y: -100 });
   const [isHovering, setIsHovering] = useState(false);
   const [isClicking, setIsClicking] = useState(false);
   const lastMoveRef = useRef(0);
-
-  useEffect(() => {
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-      setIsTouchDevice(false);
-    }
-  }, []);
 
   const handleMouseMove = useCallback((e: MouseEvent) => {
     const now = Date.now();

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1a2e"/>
+      <stop offset="50%" style="stop-color:#16213e"/>
+      <stop offset="100%" style="stop-color:#0f3460"/>
+    </linearGradient>
+    <linearGradient id="board" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#e94560"/>
+      <stop offset="100%" style="stop-color:#c23152"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Game board background -->
+  <rect x="200" y="75" width="400" height="300" rx="20" fill="url(#board)" opacity="0.2"/>
+  
+  <!-- Ludo path (simplified) -->
+  <rect x="275" y="150" width="50" height="50" rx="8" fill="#e94560" opacity="0.8"/>
+  <rect x="350" y="150" width="50" height="50" rx="8" fill="#e94560" opacity="0.6"/>
+  <rect x="425" y="150" width="50" height="50" rx="8" fill="#e94560" opacity="0.4"/>
+  <rect x="425" y="225" width="50" height="50" rx="8" fill="#e94560" opacity="0.6"/>
+  <rect x="425" y="300" width="50" height="50" rx="8" fill="#e94560" opacity="0.8"/>
+  <rect x="350" y="300" width="50" height="50" rx="8" fill="#e94560" opacity="0.6"/>
+  <rect x="275" y="300" width="50" height="50" rx="8" fill="#e94560" opacity="0.4"/>
+  <rect x="275" y="225" width="50" height="50" rx="8" fill="#e94560" opacity="0.7"/>
+  
+  <!-- Center -->
+  <rect x="350" y="225" width="50" height="50" rx="10" fill="#ffd700" opacity="0.5"/>
+  
+  <!-- Dice -->
+  <rect x="475" y="100" width="60" height="60" rx="10" fill="white" opacity="0.9"/>
+  <circle cx="490" cy="115" r="5" fill="#e94560"/>
+  <circle cx="520" cy="115" r="5" fill="#e94560"/>
+  <circle cx="490" cy="145" r="5" fill="#e94560"/>
+  <circle cx="520" cy="145" r="5" fill="#e94560"/>
+  <circle cx="505" cy="130" r="5" fill="#e94560"/>
+  
+  <!-- Title -->
+  <text x="400" y="50" font-family="Arial, sans-serif" font-size="28" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">LUDO ROYALE</text>
+  
+  <!-- Player tokens -->
+  <circle cx="300" cy="175" r="12" fill="#ff4444" stroke="white" stroke-width="2"/>
+  <circle cx="400" cy="175" r="12" fill="#44ff44" stroke="white" stroke-width="2"/>
+  <circle cx="300" cy="275" r="12" fill="#4488ff" stroke="white" stroke-width="2"/>
+  <circle cx="400" cy="275" r="12" fill="#ffff44" stroke="white" stroke-width="2"/>
+  
+  <!-- Decorative elements -->
+  <circle cx="100" cy="100" r="3" fill="#e94560" opacity="0.3"/>
+  <circle cx="700" cy="350" r="4" fill="#e94560" opacity="0.3"/>
+  <circle cx="150" cy="380" r="2" fill="#ffd700" opacity="0.2"/>
+  <circle cx="650" cy="80" r="3" fill="#ffd700" opacity="0.2"/>
+  
+  <text x="400" y="410" font-family="Arial, sans-serif" font-size="14" fill="white" opacity="0.4" text-anchor="middle">Real-Time Multiplayer Ludo Platform</text>
+</svg>
