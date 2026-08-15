@@ -1,3 +1,67 @@
+import { type LucideIcon } from 'lucide-react';
+import { Server, Monitor, Cloud, GitBranch } from 'lucide-react';
+
+export interface Skill {
+  name: string;
+  proficiency: number;
+}
+
+export interface SkillCategoryData {
+  title: string;
+  icon: LucideIcon;
+  color: string;
+  skills: Skill[];
+}
+
+export const skillCategories: SkillCategoryData[] = [
+  {
+    title: 'Backend Development',
+    icon: Server,
+    color: 'from-blue-500/20 to-blue-600/10',
+    skills: [
+      { name: 'Python', proficiency: 95 },
+      { name: 'Node.js', proficiency: 90 },
+      { name: 'Go', proficiency: 75 },
+      { name: 'Java', proficiency: 70 },
+    ],
+  },
+  {
+    title: 'Frontend Development',
+    icon: Monitor,
+    color: 'from-emerald-500/20 to-emerald-600/10',
+    skills: [
+      { name: 'React', proficiency: 92 },
+      { name: 'TypeScript', proficiency: 90 },
+      { name: 'Tailwind CSS', proficiency: 88 },
+      { name: 'HTML5/CSS3', proficiency: 95 },
+    ],
+  },
+  {
+    title: 'Cloud & DevOps',
+    icon: Cloud,
+    color: 'from-amber-500/20 to-amber-600/10',
+    skills: [
+      { name: 'AWS', proficiency: 88 },
+      { name: 'Google Cloud', proficiency: 75 },
+      { name: 'Docker', proficiency: 85 },
+      { name: 'Kubernetes', proficiency: 78 },
+      { name: 'Terraform', proficiency: 72 },
+    ],
+  },
+  {
+    title: 'Architecture & Design',
+    icon: GitBranch,
+    color: 'from-violet-500/20 to-violet-600/10',
+    skills: [
+      { name: 'Micro-services', proficiency: 90 },
+      { name: 'Event-driven', proficiency: 85 },
+      { name: 'RESTful APIs', proficiency: 92 },
+      { name: 'System Design', proficiency: 80 },
+      { name: 'CI/CD Pipelines', proficiency: 85 },
+    ],
+  },
+];
+
 export const portfolioData = {
   owner: {
     name: 'Sai Prabhat',
@@ -51,12 +115,6 @@ export const portfolioData = {
       'Performance Tuning',
       'Technical Leadership',
     ],
-  },
-  proficiency: {
-    backend: { Python: '90%', 'Node.js': '85%', Go: '70%', Java: '75%' },
-    frontend: { React: '88%', TypeScript: '82%', 'Tailwind CSS': '80%', JavaScript: '85%' },
-    cloudDevops: { AWS: '85%', Docker: '85%', Kubernetes: '70%', Terraform: '65%' },
-    architecture: { 'System Design': '85%', 'Microservices': '80%', 'API Design': '90%' },
   },
   experience: [
     {
@@ -187,6 +245,69 @@ export const portfolioData = {
         'Ensuring accessibility alongside custom cursor and visual effects',
       ],
       github: '#',
+    },
+    {
+      id: 6,
+      title: 'AI-Powered Resume Builder',
+      description:
+        'A modern resume builder that creates polished, ATS-friendly resumes with AI-powered wording suggestions, multiple professional templates, job description matching, and PDF generation.',
+      impact:
+        'Delivered a full-featured resume builder with Gemini-powered AI writing assistance, 3 professional templates with matching PDF styles, and 58 passing unit tests.',
+      technologies: [
+        'Next.js',
+        'TypeScript',
+        'Tailwind CSS',
+        'Google Gemini',
+        'shadcn/ui',
+        'React',
+        'Lucide',
+        'Vitest',
+      ],
+      details: [
+        'Built a guided 5-step resume builder with AI-powered improvements for summaries and bullet points via Google Gemini',
+        'Implemented 3 professional resume templates (Classic, Minimal, Modern) with server-side PDF generation',
+        'Added job description matching that rewrites resumes to target specific roles with relevant keywords',
+        'Designed JSON import/export for data portability and scored 58 passing unit tests with Vitest',
+      ],
+      challenges: [
+        'Implementing AI-powered content generation that produces natural, professional phrasing across multiple resume sections',
+        'Building server-side PDF generation that perfectly matches the on-screen template previews',
+        'Designing a responsive multi-step form with complex state management across education, experience, and skill entries',
+      ],
+      github: 'https://github.com/venom20021/AI_Resume_Generator',
+      live: 'https://ai-resume-generator-swart-gamma.vercel.app/',
+    },
+    {
+      id: 7,
+      title: 'Ludo Royale',
+      description:
+        'A cloud-native, production-ready real-time multiplayer Ludo platform with server-authoritative game logic, secure authentication, matchmaking, player profiles, leaderboards, and WebSocket-based real-time communication.',
+      impact:
+        'Built a scalable cloud-native multiplayer gaming platform with a server-authoritative game engine ensuring fair play through deterministic dice generation and server-side rule validation.',
+      technologies: [
+        'TypeScript',
+        'React',
+        'Next.js',
+        'NestJS',
+        'Socket.IO',
+        'PostgreSQL',
+        'Redis',
+        'Docker',
+        'AWS',
+        'Tailwind CSS',
+      ],
+      details: [
+        'Built server-authoritative game engine with deterministic dice generation and move validation on the backend to prevent cheating',
+        'Implemented real-time WebSocket communication with Socket.io for matchmaking, game state sync, and live chat',
+        'Designed public matchmaking with Elo-based leaderboards and private rooms with invite codes',
+        'Deployed on AWS (EC2, RDS, ElastiCache) with Docker containerization and GitHub Actions CI/CD',
+      ],
+      challenges: [
+        'Building a scalable WebSocket architecture for multiple concurrent game sessions with minimal latency',
+        'Designing fault-tolerant game state recovery using Redis and PostgreSQL to handle server disconnects',
+        'Optimizing Redis caching and database queries for high traffic performance',
+      ],
+      github: 'https://github.com/venom20021/Ludo_royale',
     },
     {
       id: 1,

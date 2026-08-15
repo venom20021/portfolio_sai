@@ -3,10 +3,11 @@
 import Link from 'next/link';
 import { ArrowRight, Download, Mail, ChevronDown, Sparkles, Code2, Zap } from 'lucide-react';
 import { motion, useScroll, useTransform } from 'framer-motion';
-import { useRef, useState, useEffect } from 'react';
+import { useRef } from 'react';
 import Image from 'next/image';
 import TiltCard from '@/components/tilt-card';
 import AnimatedGradient from '@/components/animated-gradient';
+import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 const floatingIcons = [
   { Icon: Code2, x: '10%', y: '15%', size: 20 },
@@ -16,13 +17,7 @@ const floatingIcons = [
 
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
-  const [isTouchDevice, setIsTouchDevice] = useState(true);
-
-  useEffect(() => {
-    if (!('ontouchstart' in window) && navigator.maxTouchPoints === 0) {
-      setIsTouchDevice(false);
-    }
-  }, []);
+  const isTouchDevice = useIsTouchDevice();
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,

@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="450" viewBox="0 0 800 450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0f0c29"/>
+      <stop offset="50%" style="stop-color:#302b63"/>
+      <stop offset="100%" style="stop-color:#24243e"/>
+    </linearGradient>
+    <linearGradient id="doc" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#ffffff"/>
+      <stop offset="100%" style="stop-color:#e8e8e8"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#667eea"/>
+      <stop offset="100%" style="stop-color:#764ba2"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Document icon -->
+  <rect x="275" y="80" width="250" height="310" rx="12" fill="url(#doc)" opacity="0.95"/>
+  <rect x="290" y="95" width="220" height="4" rx="2" fill="#667eea" opacity="0.6"/>
+  
+  <!-- Resume content lines -->
+  <rect x="290" y="115" width="120" height="6" rx="3" fill="#302b63" opacity="0.3"/>
+  <rect x="420" y="115" width="90" height="6" rx="3" fill="#302b63" opacity="0.3"/>
+  
+  <rect x="290" y="135" width="180" height="5" rx="2.5" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="148" width="160" height="5" rx="2.5" fill="#302b63" opacity="0.15"/>
+  
+  <rect x="290" y="170" width="80" height="6" rx="3" fill="#667eea" opacity="0.5"/>
+  <rect x="290" y="185" width="220" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="195" width="200" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="205" width="210" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  
+  <rect x="290" y="228" width="80" height="6" rx="3" fill="#667eea" opacity="0.5"/>
+  <rect x="290" y="243" width="220" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="253" width="195" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="263" width="205" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="273" width="180" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  
+  <rect x="290" y="296" width="80" height="6" rx="3" fill="#667eea" opacity="0.5"/>
+  <rect x="290" y="311" width="220" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="321" width="160" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  <rect x="290" y="331" width="190" height="4" rx="2" fill="#302b63" opacity="0.15"/>
+  
+  <!-- Sparkle/AI icons -->
+  <g transform="translate(520, 140)">
+    <polygon points="0,-15 4,-5 15,-5 6,2 9,13 0,7 -9,13 -6,2 -15,-5 -4,-5" fill="#ffd700" opacity="0.7"/>
+  </g>
+  <g transform="translate(540, 180) scale(0.6)">
+    <polygon points="0,-15 4,-5 15,-5 6,2 9,13 0,7 -9,13 -6,2 -15,-5 -4,-5" fill="#ffd700" opacity="0.5"/>
+  </g>
+  <g transform="translate(510, 200) scale(0.4)">
+    <polygon points="0,-15 4,-5 15,-5 6,2 9,13 0,7 -9,13 -6,2 -15,-5 -4,-5" fill="#ffd700" opacity="0.4"/>
+  </g>
+  
+  <!-- AI badge -->
+  <rect x="290" y="355" width="50" height="20" rx="10" fill="url(#accent)"/>
+  <text x="315" y="369" font-family="Arial, sans-serif" font-size="10" font-weight="bold" fill="white" text-anchor="middle">AI</text>
+  
+  <!-- Title -->
+  <text x="400" y="45" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="white" text-anchor="middle" letter-spacing="2">AI RESUME BUILDER</text>
+  
+  <!-- Decorative dots -->
+  <circle cx="720" cy="80" r="3" fill="#667eea" opacity="0.3"/>
+  <circle cx="80" cy="350" r="4" fill="#764ba2" opacity="0.3"/>
+  <circle cx="700" cy="380" r="2" fill="#667eea" opacity="0.2"/>
+  
+  <text x="400" y="420" font-family="Arial, sans-serif" font-size="13" fill="white" opacity="0.4" text-anchor="middle">ATS-Friendly Resumes with AI-Powered Suggestions</text>
+</svg>
