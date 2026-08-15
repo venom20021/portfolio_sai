@@ -27,6 +27,20 @@ export const projects: Project[] = [
       'Handling concurrent edits from multiple users required careful conflict resolution. The solution uses Yjs\'s built-in CRDT algorithm which ensures all clients converge to the same state without a central authority.',
   },
   {
+    id: 'barq-ai',
+    title: 'BARQ — Voice-Controlled AI Desktop Assistant',
+    description:
+      'A voice-first AI desktop assistant combining wake word detection, natural language understanding, and automation in one cross-platform app. Control apps, search jobs, create content, and more — all by voice, like Alexa for your computer.',
+    impact: 'Production-grade desktop app with local LLM inference, streaming voice responses, and self-updating installers for macOS and Windows.',
+    technologies: ['Python', 'FastAPI', 'Electron', 'React', 'Deepgram', 'Ollama', 'SQLite'],
+    image: '/projects/barq.jpg',
+    github: 'https://github.com/venom20021/B.A.R.Q-AI',
+    details:
+      'BARQ pairs a Python FastAPI backend with an Electron + React desktop UI. Always-on Vosk wake word detection triggers a Deepgram Voice Agent over a single WebSocket for hands-free conversation, while a local Ollama LLM handles chat with transparent fallback to OpenAI-compatible cloud APIs. It ships with multi-brain knowledge graphs (domain-specific NetworkX graphs with auto-extraction and a 3D neural dashboard), job search automation across major boards with ATS-optimized matching, desktop automation workflows, and a one-click installer that self-updates from GitHub Releases.',
+    challenges:
+      'Voice latency was the hardest constraint — the app streams sentence-aware TTS so speech starts while the LLM is still generating, and routes voice endpoints locally while sending heavier LLM calls to a remote Oracle VM backend to keep the desktop app responsive.',
+  },
+  {
     id: 'portfolio-2026',
     title: 'Personal Portfolio 2026',
     description:

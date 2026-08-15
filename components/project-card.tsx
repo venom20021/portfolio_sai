@@ -1,6 +1,7 @@
 'use client';
 
 import { useState } from 'react';
+import Image from 'next/image';
 import { Github, ExternalLink } from 'lucide-react';
 import TiltCard from '@/components/tilt-card';
 
@@ -37,11 +38,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               </div>
             </div>
           ) : (
-            <img
+            <Image
               src={project.image}
               alt={project.title}
-              className="h-full w-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
-              loading="lazy"
+              fill
+              sizes="(max-width: 768px) 100vw, 50vw"
+              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
               onError={() => setImgError(true)}
             />
           )}
