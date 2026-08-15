@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { useState } from 'react';
@@ -124,10 +125,12 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 </div>
               </div>
             ) : (
-              <img
+              <Image
                 src={project.image}
                 alt={project.title}
-                className="h-full w-full object-cover object-center"
+                fill
+                sizes="(max-width: 768px) 100vw, 900px"
+                className="object-cover object-center"
                 onError={() => setImgError(true)}
               />
             )}
