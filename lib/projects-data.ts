@@ -128,7 +128,7 @@ export const projects: Project[] = [
       'A real-time analytics pipeline processing 50,000+ events per minute using stream processing and in-memory data stores.',
     impact: 'Processes 50,000+ events/minute with sub-100ms query latency.',
     technologies: ['Go', 'Kafka', 'Kubernetes', 'PostgreSQL', 'Grafana'],
-    image: '/projects/analytics.jpg',
+    image: '/projects/analytics-platform.jpg',
     github: 'https://github.com/venom20021',
     details:
       'Built with Go for high-throughput stream processing, Kafka for event buffering, and Kubernetes for orchestration. Grafana dashboards provide real-time visibility into system health.',
