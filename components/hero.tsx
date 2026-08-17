@@ -2,11 +2,9 @@
 
 import Link from 'next/link';
 import { ArrowRight, Download, Mail, ChevronDown, Sparkles, Code2, Zap } from 'lucide-react';
-import { motion, useScroll, useTransform, useMotionTemplate, useReducedMotion } from 'framer-motion';
-import { useRef } from 'react';
-import Image from 'next/image';
-import TiltCard from '@/components/tilt-card';
+import { motion, useReducedMotion } from 'framer-motion';
 import AnimatedGradient from '@/components/animated-gradient';
+import HologramAvatar from '@/components/hologram-avatar';
 import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 const floatingIcons = [
@@ -16,26 +14,12 @@ const floatingIcons = [
 ];
 
 export default function Hero() {
-  const sectionRef = useRef<HTMLDivElement>(null);
   const isTouchDevice = useIsTouchDevice();
   const reduceMotion = useReducedMotion();
   const entranceY = reduceMotion ? 0 : 20;
 
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const photoScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 1.05]);
-  const photoY = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -40]);
-  const photoRotate = useTransform(scrollYProgress, [0, 0.5, 1], [4, 0, -4]);
-  const photoTransform = useMotionTemplate`translate3d(0, ${photoY}px, 0) scale(${photoScale}) rotate(${photoRotate}deg)`;
-
   return (
-    <section
-      ref={sectionRef}
-      className="relative min-h-[90vh] flex items-center overflow-hidden"
-    >
+    <section className="relative min-h-[90vh] flex items-center overflow-hidden">
       {/* Shader background */}
       <AnimatedGradient variant="hero" className="-z-10" />
 
@@ -129,88 +113,14 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Photo with scroll animation */}
+          {/* Right: Holographic avatar visualization */}
           <motion.div
             initial={{ y: entranceY, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.5, delay: 0.52, ease: [0.23, 1, 0.32, 1] }}
             className="relative flex justify-center lg:justify-end"
           >
-            <TiltCard tiltDegree={3} scaleOnHover={1.0} glareOpacity={0.2}>
-            {isTouchDevice ? (
-              <div className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center">
-                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent" />
-                <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/10" />
-                <div className="absolute inset-8 rounded-full bg-primary/15 blur-xl" />
-                <div className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72">
-                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
-                    <div className="h-full w-full rounded-full bg-background" />
-                  </div>
-                  <div className="h-full w-full rounded-full overflow-hidden bg-gradient-to-br from-muted to-background">
-                    <Image
-                      src="/profile.png"
-                      alt="Sai Prabhat"
-                      width={288}
-                      height={288}
-                      className="h-full w-full object-cover object-center scale-110"
-                      priority
-                    />
-                  </div>
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <div className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-lg">
-                      <span className="text-sm font-semibold text-foreground">Sai Prabhat</span>
-                      <span className="mx-1.5 text-muted-foreground/30">·</span>
-                      <span className="text-xs text-muted-foreground">Full-stack</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ) : (
-              <motion.div
-                className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
-                style={reduceMotion ? {} : { transform: photoTransform }}
-              >
-                <motion.div
-                  className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent will-change-transform"
-                  animate={reduceMotion ? {} : { rotate: 360 }}
-                  transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
-                />
-
-                <div className="absolute inset-4 rounded-full bg-gradient-to-br from-primary/10 via-transparent to-primary/10" />
-                <div className="absolute inset-8 rounded-full bg-primary/15 blur-xl" />
-
-                <motion.div
-                  className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
-                  initial={{ scale: reduceMotion ? 1 : 0.9, opacity: 0 }}
-                  animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
-                >
-                  <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
-                    <div className="h-full w-full rounded-full bg-background" />
-                  </div>
-
-                  <div className="h-full w-full rounded-full overflow-hidden bg-gradient-to-br from-muted to-background">
-                    <Image
-                      src="/profile.png"
-                      alt="Sai Prabhat"
-                      width={288}
-                      height={288}
-                      className="h-full w-full object-cover object-center scale-110"
-                      priority
-                    />
-                  </div>
-
-                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 whitespace-nowrap">
-                    <div className="px-4 py-1.5 rounded-full bg-background/80 backdrop-blur-md border border-border/50 shadow-lg">
-                      <span className="text-sm font-semibold text-foreground">Sai Prabhat</span>
-                      <span className="mx-1.5 text-muted-foreground/30">·</span>
-                      <span className="text-xs text-muted-foreground">Full-stack</span>
-                    </div>
-                  </div>
-                </motion.div>
-              </motion.div>
-            )}
-            </TiltCard>
+            <HologramAvatar />
           </motion.div>
         </div>
       </div>

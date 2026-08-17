@@ -145,3 +145,44 @@
     scroll-behavior: auto !important;
   }
 }
+
+/* Holographic avatar motion — constant loops, gated by the reduced-motion rules above */
+@keyframes holo-orbit {
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+
+@keyframes holo-orbit-reverse {
+  to {
+    transform: rotateZ(-360deg);
+  }
+}
+
+@keyframes holo-scan {
+  from {
+    transform: translateY(-120%);
+  }
+  to {
+    transform: translateY(120%);
+  }
+}
+
+@keyframes holo-pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes holo-progress {
+  from {
+    width: 10%;
+  }
+  to {
+    width: 92%;
+  }
+}
