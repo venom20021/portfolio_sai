@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import { ArrowRight, Download, Mail, ChevronDown, Sparkles, Code2, Zap } from 'lucide-react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, useMotionTemplate, useReducedMotion } from 'framer-motion';
 import { useRef } from 'react';
 import Image from 'next/image';
 import TiltCard from '@/components/tilt-card';
@@ -18,6 +18,8 @@ const floatingIcons = [
 export default function Hero() {
   const sectionRef = useRef<HTMLDivElement>(null);
   const isTouchDevice = useIsTouchDevice();
+  const reduceMotion = useReducedMotion();
+  const entranceY = reduceMotion ? 0 : 20;
 
   const { scrollYProgress } = useScroll({
     target: sectionRef,
@@ -27,6 +29,7 @@ export default function Hero() {
   const photoScale = useTransform(scrollYProgress, [0, 0.5, 1], [0.85, 1, 1.05]);
   const photoY = useTransform(scrollYProgress, [0, 0.5, 1], [40, 0, -40]);
   const photoRotate = useTransform(scrollYProgress, [0, 0.5, 1], [4, 0, -4]);
+  const photoTransform = useMotionTemplate`translate3d(0, ${photoY}px, 0) scale(${photoScale}) rotate(${photoRotate}deg)`;
 
   return (
     <section
@@ -45,7 +48,7 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{
             opacity: 1,
-            y: [0, -10, 0],
+            y: reduceMotion ? 0 : [0, -10, 0],
           }}
           transition={{
             opacity: { duration: 0.8 },
@@ -61,9 +64,9 @@ export default function Hero() {
           {/* Left: Text content */}
           <div className="text-center lg:text-left space-y-6">
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: entranceY, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.2 }}
+              transition={{ duration: 0.5, delay: 0.2, ease: [0.23, 1, 0.32, 1] }}
             >
               <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-primary/10 text-primary text-sm font-medium rounded-full border border-primary/20">
                 <span className="h-2 w-2 rounded-full bg-primary animate-pulse" />
@@ -72,9 +75,9 @@ export default function Hero() {
             </motion.div>
 
             <motion.h1
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: entranceY, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.3 }}
+              transition={{ duration: 0.5, delay: 0.28, ease: [0.23, 1, 0.32, 1] }}
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight text-balance"
             >
               Building{' '}
@@ -86,9 +89,9 @@ export default function Hero() {
             </motion.h1>
 
             <motion.p
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: entranceY, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.4 }}
+              transition={{ duration: 0.5, delay: 0.36, ease: [0.23, 1, 0.32, 1] }}
               className="text-lg sm:text-xl text-muted-foreground max-w-xl mx-auto lg:mx-0 leading-relaxed"
             >
               Full-stack engineer who combines production experience, cloud certification, and
@@ -96,9 +99,9 @@ export default function Hero() {
             </motion.p>
 
             <motion.div
-              initial={{ y: 20, opacity: 0 }}
+              initial={{ y: entranceY, opacity: 0 }}
               animate={{ y: 0, opacity: 1 }}
-              transition={{ duration: 0.5, delay: 0.5 }}
+              transition={{ duration: 0.5, delay: 0.44, ease: [0.23, 1, 0.32, 1] }}
               className="flex flex-wrap gap-3 justify-center lg:justify-start pt-2"
             >
               <Link
@@ -128,9 +131,9 @@ export default function Hero() {
 
           {/* Right: Photo with scroll animation */}
           <motion.div
-            initial={{ y: 20, opacity: 0 }}
+            initial={{ y: entranceY, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
+            transition={{ duration: 0.5, delay: 0.52, ease: [0.23, 1, 0.32, 1] }}
             className="relative flex justify-center lg:justify-end"
           >
             <TiltCard tiltDegree={3} scaleOnHover={1.0} glareOpacity={0.2}>
@@ -165,15 +168,11 @@ export default function Hero() {
             ) : (
               <motion.div
                 className="relative w-72 h-72 sm:w-80 sm:h-80 lg:w-96 lg:h-96 flex items-center justify-center"
-                style={{
-                  scale: photoScale,
-                  y: photoY,
-                  rotate: photoRotate,
-                }}
+                style={reduceMotion ? {} : { transform: photoTransform }}
               >
                 <motion.div
                   className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 via-primary/5 to-transparent will-change-transform"
-                  animate={{ rotate: 360 }}
+                  animate={reduceMotion ? {} : { rotate: 360 }}
                   transition={{ duration: 30, repeat: Infinity, ease: 'linear' }}
                 />
 
@@ -182,9 +181,9 @@ export default function Hero() {
 
                 <motion.div
                   className="relative w-56 h-56 sm:w-64 sm:h-64 lg:w-72 lg:h-72"
-                  initial={{ scale: 0.9 }}
-                  animate={{ scale: 1 }}
-                  transition={{ duration: 0.6, ease: 'easeOut' }}
+                  initial={{ scale: reduceMotion ? 1 : 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 0.6, ease: [0.23, 1, 0.32, 1] }}
                 >
                   <div className="absolute -inset-2 rounded-full bg-gradient-to-br from-primary via-primary/50 to-primary/30 p-[3px] shadow-2xl shadow-primary/20">
                     <div className="h-full w-full rounded-full bg-background" />

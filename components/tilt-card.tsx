@@ -2,6 +2,7 @@
 
 import { useRef, useState, useEffect, useCallback } from 'react';
 import type { ReactNode } from 'react';
+import { useReducedMotion } from 'framer-motion';
 import { useIsTouchDevice } from '@/hooks/use-is-touch-device';
 
 interface TiltCardProps {
@@ -24,6 +25,7 @@ export default function TiltCard({
   const ref = useRef<HTMLDivElement>(null);
   const rafRef = useRef<number | null>(null);
   const isTouchDevice = useIsTouchDevice();
+  const reduceMotion = useReducedMotion();
   const [style, setStyle] = useState<React.CSSProperties>({});
   const [glareStyle, setGlareStyle] = useState<React.CSSProperties>({});
   const [isHovered, setIsHovered] = useState(false);
@@ -74,7 +76,7 @@ export default function TiltCard({
     setGlareStyle({});
   }, []);
 
-  if (isTouchDevice) {
+  if (isTouchDevice || reduceMotion) {
     return <div className={className}>{children}</div>;
   }
 
