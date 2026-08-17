@@ -5,6 +5,7 @@ import { ThemeProvider } from 'next-themes';
 import Navbar from '@/components/navbar';
 import Footer from '@/components/footer';
 import AnimatedLayout from '@/components/animated-layout';
+import Starfield from '@/components/starfield';
 import MouseBeam from '@/components/mouse-beam';
 import CustomCursor from '@/components/custom-cursor';
 import ClickParticles from '@/components/click-particles';
@@ -48,6 +49,7 @@ export default function RootLayout({
     <html lang="en" className={inter.className} suppressHydrationWarning>
       <body className="antialiased min-h-screen">
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem disableTransitionOnChange>
+          <Starfield />
           <ClickParticles />
           <CustomCursor />
           <MouseBeam />

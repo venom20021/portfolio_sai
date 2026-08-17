@@ -121,7 +121,7 @@ export default function AboutPage() {
                   >
                     <TiltCard tiltDegree={5} scaleOnHover={1.02} glareOpacity={0.2}>
                       <div
-                        className={`group relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-xl transition duration-300 h-full overflow-hidden`}
+                        className={`group relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 dark:from-white/[0.06] dark:to-white/[0.02] border border-border/50 dark:border-white/10 dark:backdrop-blur-xl shadow-sm hover:shadow-xl transition duration-300 h-full overflow-hidden`}
                       >
                         {/* Hover glow effect */}
                         <div

@@ -190,9 +190,107 @@
 @keyframes holo-glow {
   0%,
   100% {
-    filter: drop-shadow(0 0 12px rgba(255, 51, 51, 0.35));
+    filter: drop-shadow(0 0 12px hsl(var(--primary) / 0.35));
   }
   50% {
-    filter: drop-shadow(0 0 26px rgba(255, 51, 51, 0.6));
+    filter: drop-shadow(0 0 26px hsl(var(--primary) / 0.6));
   }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.15;
+  }
+  50% {
+    opacity: 0.8;
+  }
+}
+
+@keyframes twinkle-bright {
+  0%,
+  100% {
+    opacity: 0.45;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes star-drift {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  50% {
+    transform: translate(var(--drift-x, 10px), var(--drift-y, -10px));
+  }
+}
+
+@keyframes shoot {
+  0% {
+    transform: rotate(-35deg) translateX(0);
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  14% {
+    transform: rotate(-35deg) translateX(-55vw);
+    opacity: 0;
+  }
+  100% {
+    transform: rotate(-35deg) translateX(-55vw);
+    opacity: 0;
+  }
+}
+
+/* Accent palettes — switch via <html data-accent="..."> */
+:root[data-accent="purple"] {
+  --primary: 268 70% 45%;
+  --accent: 268 70% 45% / 0.12;
+  --accent-foreground: 268 70% 45%;
+  --ring: 268 70% 45%;
+  --chart-1: 268 70% 45%;
+  --beam-color: 268 70% 45%;
+}
+:root.dark[data-accent="purple"] {
+  --primary: 268 85% 62%;
+  --accent: 268 85% 62% / 0.1;
+  --accent-foreground: 268 85% 62%;
+  --ring: 268 85% 62%;
+  --chart-1: 268 85% 62%;
+  --beam-color: 268 85% 62%;
+}
+:root[data-accent="cyan"] {
+  --primary: 189 80% 40%;
+  --accent: 189 80% 40% / 0.12;
+  --accent-foreground: 189 80% 40%;
+  --ring: 189 80% 40%;
+  --chart-1: 189 80% 40%;
+  --beam-color: 189 80% 40%;
+}
+:root.dark[data-accent="cyan"] {
+  --primary: 189 90% 55%;
+  --accent: 189 90% 55% / 0.1;
+  --accent-foreground: 189 90% 55%;
+  --ring: 189 90% 55%;
+  --chart-1: 189 90% 55%;
+  --beam-color: 189 90% 55%;
+}
+:root[data-accent="emerald"] {
+  --primary: 160 70% 40%;
+  --accent: 160 70% 40% / 0.12;
+  --accent-foreground: 160 70% 40%;
+  --ring: 160 70% 40%;
+  --chart-1: 160 70% 40%;
+  --beam-color: 160 70% 40%;
+}
+:root.dark[data-accent="emerald"] {
+  --primary: 160 84% 50%;
+  --accent: 160 84% 50% / 0.1;
+  --accent-foreground: 160 84% 50%;
+  --ring: 160 84% 50%;
+  --chart-1: 160 84% 50%;
+  --beam-color: 160 84% 50%;
 }

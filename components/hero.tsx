@@ -90,7 +90,7 @@ export default function Hero() {
             >
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-[0_0_24px_rgba(255,51,51,0.35)] hover:shadow-xl hover:shadow-[0_0_36px_rgba(255,51,51,0.5)] hover:scale-[1.02] active:scale-[0.98] transition duration-200"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-[0_0_24px_hsl(var(--primary)/0.35)] hover:shadow-xl hover:shadow-[0_0_36px_hsl(var(--primary)/0.5)] hover:scale-[1.02] active:scale-[0.98] transition duration-200"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
@@ -113,7 +113,7 @@ export default function Hero() {
             </motion.div>
           </div>
 
-          {/* Right: Holographic avatar visualization */}
+          {/* Right: Glass-sphere portrait */}
           <motion.div
             initial={{ y: entranceY, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}

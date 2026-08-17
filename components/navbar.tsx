@@ -18,16 +18,43 @@ const navLinks: NavLink[] = [
   { href: '/contact', label: 'Contact' },
 ];
 
+const ACCENTS = [
+  { id: '', label: 'Red', color: '#ef4444' },
+  { id: 'purple', label: 'Space Purple', color: '#a78bfa' },
+  { id: 'cyan', label: 'Cyan', color: '#22d3ee' },
+  { id: 'emerald', label: 'Emerald', color: '#34d399' },
+];
+
 export default function Navbar() {
   const pathname = usePathname();
   const { setTheme, theme } = useTheme();
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [accent, setAccent] = useState(0);
 
   useEffect(() => {
     setMounted(true);
   }, []);
+
+  useEffect(() => {
+    const saved = window.localStorage.getItem('sp-accent') ?? '';
+    const idx = ACCENTS.findIndex((a) => a.id === saved);
+    const next = idx === -1 ? 0 : idx;
+    setAccent(next);
+    if (ACCENTS[next].id) {
+      document.documentElement.setAttribute('data-accent', ACCENTS[next].id);
+    }
+  }, []);
+
+  const cycleAccent = () => {
+    const next = (accent + 1) % ACCENTS.length;
+    setAccent(next);
+    const id = ACCENTS[next].id;
+    if (id) document.documentElement.setAttribute('data-accent', id);
+    else document.documentElement.removeAttribute('data-accent');
+    window.localStorage.setItem('sp-accent', id);
+  };
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -52,8 +79,8 @@ export default function Navbar() {
     <header
       className={`sticky top-0 z-50 w-full transition duration-300 ${
         scrolled
-          ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm'
-          : 'bg-background/50 backdrop-blur-md'
+          ? 'bg-background/80 dark:bg-black/40 backdrop-blur-xl border-b border-border/50 dark:border-white/10 shadow-sm'
+          : 'bg-background/50 dark:bg-black/20 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -69,20 +96,20 @@ export default function Navbar() {
           </Link>
 
           {/* Centered floating pill nav (desktop) */}
-          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex items-center gap-0.5 rounded-full border border-border/40 bg-background/70 backdrop-blur-xl px-1.5 py-1 shadow-lg">
+          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex items-center gap-0.5 rounded-full border border-border/40 dark:border-white/10 bg-background/70 dark:bg-white/[0.06] backdrop-blur-xl px-1.5 py-1 shadow-lg dark:shadow-[0_8px_32px_rgba(0,0,0,0.45)]">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
                 className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition duration-200 active:scale-[0.95] ${
                   isActive(link.href)
-                    ? 'bg-primary text-primary-foreground shadow-[0_0_16px_rgba(255,51,51,0.45)]'
+                    ? 'bg-primary text-primary-foreground shadow-[0_0_16px_hsl(var(--primary)/0.45)]'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
                 {link.label}
                 {isActive(link.href) && (
-                  <span className="absolute -bottom-1 inset-x-4 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(255,51,51,0.9)]" />
+                  <span className="absolute -bottom-1 inset-x-4 h-0.5 rounded-full bg-primary shadow-[0_0_8px_hsl(var(--primary)/0.9)]" />
                 )}
               </Link>
             ))}
@@ -99,6 +126,19 @@ export default function Navbar() {
               <Download className="h-4 w-4" />
               <span>Resume</span>
             </a>
+
+            {/* Accent switcher */}
+            <button
+              onClick={cycleAccent}
+              aria-label={`Accent color: ${ACCENTS[accent].label}. Click to change.`}
+              title={`Accent: ${ACCENTS[accent].label} — click to change`}
+              className="p-2.5 rounded-xl hover:bg-muted/50 transition duration-200 active:scale-90"
+            >
+              <span
+                className="block h-4 w-4 rounded-full border border-foreground/20 shadow-inner"
+                style={{ background: ACCENTS[accent].color }}
+              />
+            </button>
 
             <button
               onClick={toggleTheme}

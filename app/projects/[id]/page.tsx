@@ -156,7 +156,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 return (
                   <div
                     key={metric.label}
-                    className="p-4 rounded-xl bg-gradient-to-br from-background to-muted/20 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/20 transition duration-200"
+                    className="p-4 rounded-xl bg-gradient-to-br from-background to-muted/20 dark:from-white/[0.06] dark:to-white/[0.02] border border-border/40 dark:border-white/10 dark:backdrop-blur-xl shadow-sm hover:shadow-md hover:border-primary/20 transition duration-200"
                   >
                     <Icon className="h-4 w-4 text-primary mb-2" />
                     <p className="text-lg sm:text-xl font-bold text-foreground">

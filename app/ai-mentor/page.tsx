@@ -43,7 +43,7 @@ export default function AIMentorPage() {
           ].map((feature) => (
             <div
               key={feature.title}
-              className="p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition duration-300"
+              className="p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 dark:from-white/[0.06] dark:to-white/[0.02] border border-border/50 dark:border-white/10 dark:backdrop-blur-xl shadow-sm hover:shadow-md hover:border-primary/20 transition duration-300"
             >
               <h3 className="font-semibold text-foreground mb-2 text-sm">{feature.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed">{feature.description}</p>

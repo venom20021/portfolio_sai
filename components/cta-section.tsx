@@ -31,7 +31,7 @@ export default function CTASection() {
           style={{ scale: scaleIn, opacity: opacityIn }}
         >
           <TiltCard tiltDegree={4} scaleOnHover={1.0} glareOpacity={0.3}>
-            <div className="relative p-8 sm:p-12 rounded-3xl border border-primary/20 bg-gradient-to-br from-background/80 to-background/40 backdrop-blur-xl shadow-2xl text-center overflow-hidden">
+            <div className="relative p-8 sm:p-12 rounded-3xl border border-primary/20 dark:border-white/10 bg-gradient-to-br from-background/80 to-background/40 dark:from-white/[0.06] dark:to-white/[0.02] backdrop-blur-xl shadow-2xl text-center overflow-hidden">
               {/* Inner animated orbs */}
               <div className="pointer-events-none absolute -top-20 -right-20 w-40 h-40 bg-primary/5 rounded-full blur-3xl" />
               <div className="pointer-events-none absolute -bottom-20 -left-20 w-40 h-40 bg-purple-500/5 rounded-full blur-3xl" />

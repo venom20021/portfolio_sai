@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <TiltCard tiltDegree={6} scaleOnHover={1.02} glareOpacity={0.3} className="group h-full">
-      <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-background to-muted/20 shadow-sm transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl group-hover:border-primary/20">
+      <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 dark:border-white/10 bg-gradient-to-br from-background to-muted/20 dark:from-white/[0.06] dark:to-white/[0.02] dark:backdrop-blur-xl shadow-sm transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl group-hover:border-primary/20">
         {/* Image */}
         <div className="relative h-48 overflow-hidden bg-muted/30">
           {imgError ? (

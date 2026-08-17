@@ -78,8 +78,8 @@ export default function HologramAvatar() {
               <defs>
                 <radialGradient id="holo-sphere-fill" cx="32%" cy="28%" r="80%">
                   <stop offset="0%" stopColor="rgba(255,255,255,0.1)" />
-                  <stop offset="35%" stopColor="rgba(220,38,38,0.13)" />
-                  <stop offset="72%" stopColor="rgba(220,38,38,0.05)" />
+                  <stop offset="35%" stopColor="hsl(var(--primary) / 0.14)" />
+                  <stop offset="72%" stopColor="hsl(var(--primary) / 0.05)" />
                   <stop offset="100%" stopColor="rgba(5,5,5,0.4)" />
                 </radialGradient>
               </defs>
