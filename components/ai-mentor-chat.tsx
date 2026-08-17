@@ -176,7 +176,7 @@ export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChat
           {onClose && (
             <button
               onClick={onClose}
-              className="p-1.5 rounded-lg hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all duration-200"
+              className="p-1.5 rounded-lg hover:bg-muted/50 text-muted-foreground hover:text-foreground transition duration-200"
               aria-label="Close"
             >
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -251,7 +251,7 @@ export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChat
                   <button
                     key={q}
                     onClick={() => handleSuggestedClick(q)}
-                    className="group text-xs px-3 py-2 rounded-xl border border-border/40 bg-muted/20 text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm transition-all duration-200 flex items-center gap-1.5"
+                    className="group text-xs px-3 py-2 rounded-xl border border-border/40 bg-muted/20 text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-primary/5 hover:shadow-sm transition duration-200 active:scale-[0.97] flex items-center gap-1.5"
                   >
                     <MessageSquare className="h-3 w-3 shrink-0" />
                     {q}
@@ -406,7 +406,7 @@ export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChat
               placeholder="Ask about projects, get boilerplate, or request code review..."
               rows={1}
               disabled={isLoading}
-              className="w-full rounded-xl border border-border/50 bg-background/80 px-4 py-2.5 pr-10 text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none transition-all duration-200 min-h-[42px] max-h-[120px] disabled:opacity-50"
+              className="w-full rounded-xl border border-border/50 bg-background/80 px-4 py-2.5 pr-10 text-sm text-foreground placeholder:text-muted-foreground/30 focus:outline-none focus:ring-2 focus:ring-primary/20 focus:border-primary/50 resize-none transition duration-200 min-h-[42px] max-h-[120px] disabled:opacity-50"
               style={{ height: 'auto' }}
               onInput={(e) => {
                 const target = e.target as HTMLTextAreaElement;
@@ -420,7 +420,7 @@ export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChat
             <button
               type="button"
               onClick={() => stop()}
-              className="p-2.5 rounded-xl bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20 transition-all duration-200 shrink-0"
+              className="p-2.5 rounded-xl bg-destructive/10 text-destructive border border-destructive/20 hover:bg-destructive/20 transition duration-200 active:scale-95 shrink-0"
               aria-label="Stop generating"
             >
               <StopCircle className="h-5 w-5" />
@@ -429,7 +429,7 @@ export default function AIMentorChat({ variant = 'page', onClose }: AIMentorChat
             <button
               type="submit"
               disabled={!input.trim()}
-              className="p-2.5 rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 disabled:opacity-40 disabled:cursor-not-allowed transition-all duration-200 shrink-0 shadow-sm hover:shadow-md"
+              className="p-2.5 rounded-xl bg-gradient-to-br from-primary to-primary/80 text-primary-foreground hover:from-primary/90 hover:to-primary/70 disabled:opacity-40 disabled:cursor-not-allowed transition duration-200 active:scale-95 shrink-0 shadow-sm hover:shadow-md"
               aria-label="Send message"
             >
               <Send className="h-5 w-5" />

@@ -156,7 +156,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
                 return (
                   <div
                     key={metric.label}
-                    className="p-4 rounded-xl bg-gradient-to-br from-background to-muted/20 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-200"
+                    className="p-4 rounded-xl bg-gradient-to-br from-background to-muted/20 border border-border/40 shadow-sm hover:shadow-md hover:border-primary/20 transition duration-200"
                   >
                     <Icon className="h-4 w-4 text-primary mb-2" />
                     <p className="text-lg sm:text-xl font-bold text-foreground">
@@ -302,7 +302,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             {prevProject ? (
               <Link
                 href={`/projects/${prevProject.id}`}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-border/40 hover:border-primary/30 hover:bg-muted/20 transition-all duration-200"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-border/40 hover:border-primary/30 hover:bg-muted/20 transition duration-200"
               >
                 <ChevronLeft className="h-4 w-4 text-muted-foreground group-hover:text-primary transition-colors shrink-0" />
                 <div className="text-left">
@@ -321,7 +321,7 @@ export default function ProjectPage({ params }: { params: { id: string } }) {
             {nextProject ? (
               <Link
                 href={`/projects/${nextProject.id}`}
-                className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-border/40 hover:border-primary/30 hover:bg-muted/20 transition-all duration-200 sm:text-right"
+                className="group flex items-center gap-3 px-4 py-3 rounded-xl border border-border/40 hover:border-primary/30 hover:bg-muted/20 transition duration-200 sm:text-right"
               >
                 <div className="text-left sm:text-right">
                   <span className="text-[10px] font-medium text-muted-foreground/60 uppercase tracking-wider">

@@ -10,7 +10,7 @@ export default function SkillCategoryCard({ category }: { category: SkillCategor
 
   return (
     <TiltCard tiltDegree={5} scaleOnHover={1.02} glareOpacity={0.25}>
-      <div className="relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/30 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300 h-full">
+      <div className="relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/30 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition duration-300 h-full">
         <div
           className={`inline-flex p-3 rounded-xl bg-gradient-to-br ${category.color} border border-border/50 mb-4`}
         >

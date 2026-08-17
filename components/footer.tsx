@@ -90,7 +90,7 @@ export default function Footer() {
                 href="https://github.com/venom20021"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition-all duration-200"
+                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition duration-200 active:scale-90"
                 aria-label="GitHub"
               >
                 <Github className="h-4 w-4" />
@@ -99,14 +99,14 @@ export default function Footer() {
                 href="https://linkedin.com/in/saiprabhat"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition-all duration-200"
+                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition duration-200 active:scale-90"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="h-4 w-4" />
               </a>
               <a
                 href="mailto:prabhatsai047@gmail.com"
-                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition-all duration-200"
+                className="p-2.5 rounded-xl bg-muted/50 border border-border/50 text-muted-foreground hover:text-foreground hover:bg-muted hover:border-primary/30 transition duration-200 active:scale-90"
                 aria-label="Email"
               >
                 <Mail className="h-4 w-4" />
@@ -122,7 +122,7 @@ export default function Footer() {
       {/* Scroll to top button */}
       <button
         onClick={scrollToTop}
-        className="absolute -top-5 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-110 active:scale-95 transition-all duration-200"
+        className="absolute -top-5 left-1/2 -translate-x-1/2 p-2.5 rounded-full bg-primary text-primary-foreground shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-110 active:scale-95 transition duration-200"
         aria-label="Scroll to top"
       >
         <ArrowUp className="h-4 w-4" />

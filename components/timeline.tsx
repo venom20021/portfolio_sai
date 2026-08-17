@@ -32,7 +32,7 @@ export default function Timeline({ items }: TimelineProps) {
             <div className="absolute left-3.5 top-1.5 h-3.5 w-3.5 rounded-full bg-primary border-2 border-background shadow-sm shadow-primary/20 z-10" />
 
             {/* Content card */}
-            <div className="p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition-all duration-300">
+            <div className="p-5 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-md hover:border-primary/20 transition duration-300">
               <div className="flex items-start gap-3">
                 <div className="text-2xl flex-shrink-0 mt-0.5">{item.icon}</div>
                 <div className="space-y-2">

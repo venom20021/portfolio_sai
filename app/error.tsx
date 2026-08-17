@@ -33,14 +33,14 @@ export default function Error({
         <div className="flex flex-wrap justify-center gap-3 pt-2">
           <button
             onClick={reset}
-            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition duration-200"
           >
-            <RefreshCw className="h-4 w-4 group-hover:rotate-180 transition-transform duration-500" />
+            <RefreshCw className="h-4 w-4 group-hover:rotate-180 transition-transform duration-300" />
             Try Again
           </button>
           <Link
             href="/"
-            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 transition-all duration-200"
+            className="group inline-flex items-center gap-2 px-5 py-2.5 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 transition duration-200"
           >
             <Home className="h-4 w-4" />
             Go Home

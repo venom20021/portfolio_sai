@@ -65,7 +65,7 @@ export default function Hero() {
               className="text-4xl sm:text-5xl lg:text-6xl font-bold text-foreground leading-tight tracking-tight text-balance"
             >
               Building{' '}
-              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent">
+              <span className="bg-gradient-to-r from-primary via-primary/80 to-primary/60 bg-clip-text text-transparent [animation:holo-glow_4s_ease-in-out_infinite]">
                 Scalable Systems
               </span>
               <br />
@@ -90,7 +90,7 @@ export default function Hero() {
             >
               <Link
                 href="/projects"
-                className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-[0_0_24px_rgba(255,51,51,0.35)] hover:shadow-xl hover:shadow-[0_0_36px_rgba(255,51,51,0.5)] hover:scale-[1.02] active:scale-[0.98] transition duration-200"
               >
                 View Projects
                 <ArrowRight className="h-4 w-4 group-hover:translate-x-0.5 transition-transform" />
@@ -98,14 +98,14 @@ export default function Hero() {
               <a
                 href="/sai-prabhat-resume.pdf"
                 download
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 transition-all duration-200 cursor-pointer"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 transition duration-200 active:scale-[0.98] cursor-pointer"
               >
                 Download Resume
                 <Download className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
               </a>
               <Link
                 href="/contact"
-                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-muted-foreground font-medium hover:bg-muted/50 hover:text-foreground hover:border-primary/30 transition-all duration-200"
+                className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-muted-foreground font-medium hover:bg-muted/50 hover:text-foreground hover:border-primary/30 transition duration-200 active:scale-[0.98]"
               >
                 <Mail className="h-4 w-4" />
                 Contact

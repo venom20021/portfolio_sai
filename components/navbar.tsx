@@ -2,19 +2,11 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import {
-  Moon,
-  Sun,
-  Menu,
-  X,
-  Sparkles,
-  Download,
-  type LucideIcon,
-} from 'lucide-react';
+import { Moon, Sun, Menu, X, Download } from 'lucide-react';
 import { useTheme } from 'next-themes';
 import { useState, useEffect } from 'react';
 
-type NavLink = { href: string; label: string; icon?: LucideIcon };
+type NavLink = { href: string; label: string };
 
 const navLinks: NavLink[] = [
   { href: '/', label: 'Home' },
@@ -22,14 +14,9 @@ const navLinks: NavLink[] = [
   { href: '/experience', label: 'Experience' },
   { href: '/projects', label: 'Projects' },
   { href: '/skills', label: 'Skills' },
-  { href: '/ai-mentor', label: 'AI Mentor', icon: Sparkles },
+  { href: '/ai-mentor', label: 'AI Mentor' },
   { href: '/contact', label: 'Contact' },
 ];
-
-function NavLinkIcon({ icon: Icon }: { icon?: LucideIcon }) {
-  if (!Icon) return null;
-  return <Icon className="h-3.5 w-3.5" />;
-}
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -63,17 +50,17 @@ export default function Navbar() {
 
   return (
     <header
-      className={`sticky top-0 z-50 w-full transition-all duration-300 ${
+      className={`sticky top-0 z-50 w-full transition duration-300 ${
         scrolled
           ? 'bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm'
           : 'bg-background/50 backdrop-blur-md'
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex h-16 items-center justify-between">
+        <div className="relative flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="h-9 w-9 flex items-center justify-center bg-gradient-to-br from-primary to-primary/60 rounded-xl shadow-md group-hover:shadow-lg group-hover:shadow-primary/20 transition-all duration-300">
+            <span className="h-9 w-9 flex items-center justify-center bg-gradient-to-br from-primary to-primary/60 rounded-xl shadow-md group-hover:shadow-lg group-hover:shadow-primary/20 transition duration-300">
               <span className="text-primary-foreground font-bold text-sm">SP</span>
             </span>
             <span className="text-lg font-bold text-foreground hidden sm:block">
@@ -81,24 +68,21 @@ export default function Navbar() {
             </span>
           </Link>
 
-          {/* Desktop Nav */}
-          <nav className="hidden md:flex items-center gap-1">
+          {/* Centered floating pill nav (desktop) */}
+          <nav className="absolute left-1/2 top-1/2 hidden -translate-x-1/2 -translate-y-1/2 lg:flex items-center gap-0.5 rounded-full border border-border/40 bg-background/70 backdrop-blur-xl px-1.5 py-1 shadow-lg">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
                 href={link.href}
-                className={`relative px-4 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+                className={`relative px-3.5 py-1.5 text-sm font-medium rounded-full transition duration-200 active:scale-[0.95] ${
                   isActive(link.href)
-                    ? 'text-primary bg-primary/10'
+                    ? 'bg-primary text-primary-foreground shadow-[0_0_16px_rgba(255,51,51,0.45)]'
                     : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
                 }`}
               >
-                <span className="flex items-center gap-1.5">
-                  <NavLinkIcon icon={link.icon} />
-                  {link.label}
-                </span>
+                {link.label}
                 {isActive(link.href) && (
-                  <span className="absolute inset-x-2 bottom-0.5 h-0.5 rounded-full bg-primary" />
+                  <span className="absolute -bottom-1 inset-x-4 h-0.5 rounded-full bg-primary shadow-[0_0_8px_rgba(255,51,51,0.9)]" />
                 )}
               </Link>
             ))}
@@ -110,7 +94,7 @@ export default function Navbar() {
             <a
               href="/sai-prabhat-resume.pdf"
               download
-              className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-200 shadow-sm hover:shadow-md hover:shadow-primary/20"
+              className="hidden md:inline-flex items-center gap-1.5 px-3 py-2 text-sm font-medium rounded-xl bg-primary text-primary-foreground hover:bg-primary/90 transition duration-200 shadow-sm hover:shadow-md hover:shadow-primary/20 active:scale-[0.97]"
             >
               <Download className="h-4 w-4" />
               <span>Resume</span>
@@ -119,7 +103,7 @@ export default function Navbar() {
             <button
               onClick={toggleTheme}
               aria-label="Toggle theme"
-              className="p-2.5 rounded-xl hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all duration-200"
+              className="p-2.5 rounded-xl hover:bg-muted/50 text-muted-foreground hover:text-foreground transition duration-200 active:scale-90"
             >
               {mounted ? (
                 theme === 'dark' ? (
@@ -136,7 +120,7 @@ export default function Navbar() {
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-label="Toggle menu"
-              className="md:hidden p-2.5 rounded-xl hover:bg-muted/50 text-muted-foreground hover:text-foreground transition-all duration-200"
+              className="lg:hidden p-2.5 rounded-xl hover:bg-muted/50 text-muted-foreground hover:text-foreground transition duration-200 active:scale-90"
             >
               {isOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
             </button>
@@ -146,7 +130,7 @@ export default function Navbar() {
 
       {/* Mobile Nav */}
       <div
-        className={`md:hidden transition-all duration-300 overflow-hidden ${
+        className={`lg:hidden transition-[max-height,opacity] duration-300 overflow-hidden ${
           isOpen ? 'max-h-[32rem] opacity-100' : 'max-h-0 opacity-0'
         }`}
       >
@@ -154,17 +138,13 @@ export default function Navbar() {
           {navLinks.map((link) => (
             <Link
               key={link.href}
-              href={link.href}
-              className={`block px-4 py-3 rounded-xl text-sm font-medium transition-all duration-200 ${
+              href={link.href}                className={`block px-4 py-3 rounded-xl text-sm font-medium transition duration-200 active:scale-[0.98] ${
                 isActive(link.href)
                   ? 'text-primary bg-primary/10'
                   : 'text-muted-foreground hover:text-foreground hover:bg-muted/50'
               }`}
             >
-              <span className="flex items-center gap-1.5">
-                <NavLinkIcon icon={link.icon} />
-                {link.label}
-              </span>
+              {link.label}
             </Link>
           ))}
 
@@ -172,7 +152,7 @@ export default function Navbar() {
           <a
             href="/sai-prabhat-resume.pdf"
             download
-            className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 transition-all duration-200 mt-2"
+            className="flex items-center gap-2 px-4 py-3 rounded-xl text-sm font-medium bg-primary/10 text-primary hover:bg-primary/20 transition duration-200 active:scale-[0.98] mt-2"
           >
             <Download className="h-4 w-4" />
             Download Resume

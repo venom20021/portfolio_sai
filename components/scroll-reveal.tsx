@@ -1,6 +1,25 @@
 'use client';
 
-import { motion } from 'framer-motion';
+import { motion, useReducedMotion } from 'framer-motion';
+
+const EASE_OUT: [number, number, number, number] = [0.23, 1, 0.32, 1];
+
+function getOffset(direction: 'up' | 'down' | 'left' | 'right' | 'none', distance: number) {
+  switch (direction) {
+    case 'up':
+      return { y: distance };
+    case 'down':
+      return { y: -distance };
+    case 'left':
+      return { x: distance };
+    case 'right':
+      return { x: -distance };
+    case 'none':
+      return {};
+    default:
+      return { y: distance };
+  }
+}
 
 interface ScrollRevealProps {
   children: React.ReactNode;
@@ -23,18 +42,11 @@ export default function ScrollReveal({
   distance = 30,
   once = true,
   stagger = false,
-  staggerDelay = 0.1,
+  staggerDelay = 0.08,
 }: ScrollRevealProps) {
-  const getInitialOffset = () => {
-    switch (direction) {
-      case 'up': return { y: distance };
-      case 'down': return { y: -distance };
-      case 'left': return { x: distance };
-      case 'right': return { x: -distance };
-      case 'none': return {};
-      default: return { y: distance };
-    }
-  };
+  const reduceMotion = useReducedMotion();
+  // Reduced motion: keep the fade, drop the movement.
+  const offset = reduceMotion ? {} : getOffset(direction, distance);
 
   if (stagger) {
     return (
@@ -61,13 +73,13 @@ export default function ScrollReveal({
 
   return (
     <motion.div
-      initial={{ opacity: 0, ...getInitialOffset() }}
+      initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once, margin: '-50px' }}
       transition={{
         duration,
         delay,
-        ease: 'easeOut',
+        ease: EASE_OUT,
       }}
       className={className}
     >
@@ -89,23 +101,15 @@ export function ScrollRevealItem({
   duration?: number;
   distance?: number;
 }) {
-  const getInitialOffset = () => {
-    switch (direction) {
-      case 'up': return { y: distance };
-      case 'down': return { y: -distance };
-      case 'left': return { x: distance };
-      case 'right': return { x: -distance };
-      case 'none': return {};
-      default: return { y: distance };
-    }
-  };
+  const reduceMotion = useReducedMotion();
+  const offset = reduceMotion ? {} : getOffset(direction, distance);
 
   return (
     <motion.div
-      initial={{ opacity: 0, ...getInitialOffset() }}
+      initial={{ opacity: 0, ...offset }}
       whileInView={{ opacity: 1, x: 0, y: 0 }}
       viewport={{ once: true, margin: '-30px' }}
-      transition={{ duration, ease: 'easeOut' }}
+      transition={{ duration, ease: EASE_OUT }}
       className={className}
     >
       {children}

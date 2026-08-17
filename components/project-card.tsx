@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
 
   return (
     <TiltCard tiltDegree={6} scaleOnHover={1.02} glareOpacity={0.3} className="group h-full">
-      <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-background to-muted/20 shadow-sm transition-all duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl group-hover:border-primary/20">
+      <div className="relative h-full overflow-hidden rounded-2xl border border-border/50 bg-gradient-to-br from-background to-muted/20 shadow-sm transition duration-300 group-hover:-translate-y-1.5 group-hover:shadow-xl group-hover:border-primary/20">
         {/* Image */}
         <div className="relative h-48 overflow-hidden bg-muted/30">
           {imgError ? (
@@ -43,12 +43,12 @@ export default function ProjectCard({ project }: ProjectCardProps) {
               alt={project.title}
               fill
               sizes="(max-width: 768px) 100vw, 50vw"
-              className="object-cover object-center transition-transform duration-500 group-hover:scale-105"
+              className="object-cover object-center transition-transform duration-300 group-hover:scale-105"
               onError={() => setImgError(true)}
             />
           )}
           <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent" />
-          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-transparent to-primary/5 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
 
         {/* Content */}
@@ -90,7 +90,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 }}
                 role="link"
                 tabIndex={0}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-muted/30 transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-border text-muted-foreground hover:text-foreground hover:border-primary/30 hover:bg-muted/30 transition duration-200 active:scale-[0.97] cursor-pointer"
               >
                 <Github className="h-3.5 w-3.5" />
                 View Code
@@ -111,7 +111,7 @@ export default function ProjectCard({ project }: ProjectCardProps) {
                 }}
                 role="link"
                 tabIndex={0}
-                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/40 transition-all duration-200 cursor-pointer"
+                className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-lg border border-primary/20 bg-primary/5 text-primary hover:bg-primary/10 hover:border-primary/40 transition duration-200 active:scale-[0.97] cursor-pointer"
               >
                 <ExternalLink className="h-3.5 w-3.5" />
                 Live Demo

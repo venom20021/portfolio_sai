@@ -121,11 +121,11 @@ export default function AboutPage() {
                   >
                     <TiltCard tiltDegree={5} scaleOnHover={1.02} glareOpacity={0.2}>
                       <div
-                        className={`group relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 h-full overflow-hidden`}
+                        className={`group relative p-6 rounded-2xl bg-gradient-to-br from-background to-muted/20 border border-border/50 shadow-sm hover:shadow-xl transition duration-300 h-full overflow-hidden`}
                       >
                         {/* Hover glow effect */}
                         <div
-                          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                          className="pointer-events-none absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
                           style={{
                             background: `radial-gradient(600px circle at 50% 50%, ${value.glowColor}, transparent 60%)`,
                           }}
@@ -135,7 +135,7 @@ export default function AboutPage() {
                           <motion.div
                             whileHover={{ rotate: [0, -10, 10, -5, 0], scale: 1.1 }}
                             transition={{ duration: 0.4 }}
-                            className={`p-3 rounded-xl bg-gradient-to-br ${value.color} group-hover:scale-110 group-hover:shadow-lg transition-all duration-300 border border-border/50 shrink-0`}
+                            className={`p-3 rounded-xl bg-gradient-to-br ${value.color} group-hover:scale-110 group-hover:shadow-lg transition duration-300 border border-border/50 shrink-0`}
                           >
                             <Icon className="h-5 w-5 text-foreground" />
                           </motion.div>

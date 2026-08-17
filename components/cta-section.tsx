@@ -90,7 +90,7 @@ export default function CTASection() {
               >
                 <Link
                   href="/contact"
-                  className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200"
+                  className="group inline-flex items-center gap-2 px-6 py-3 bg-primary text-primary-foreground rounded-xl font-medium shadow-lg shadow-primary/20 hover:shadow-xl hover:shadow-primary/30 hover:scale-[1.02] active:scale-[0.98] transition duration-200"
                 >
                   Get in Touch
                   <motion.span
@@ -103,7 +103,7 @@ export default function CTASection() {
                 <a
                   href="/sai-prabhat-resume.pdf"
                   download
-                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 hover:scale-[1.02] active:scale-[0.98] transition-all duration-200 cursor-pointer"
+                  className="group inline-flex items-center gap-2 px-6 py-3 rounded-xl border border-border text-foreground font-medium hover:bg-muted/50 hover:border-primary/30 hover:scale-[1.02] active:scale-[0.98] transition duration-200 cursor-pointer"
                 >
                   Download Resume
                   <Download className="h-4 w-4 group-hover:translate-y-0.5 transition-transform" />
